@@ -1,0 +1,45 @@
+<div class="tarjeta">
+    <div style="margin-bottom: 15px;">
+         <button 
+        pBtutton
+        Label="Agregar"
+        icon="pi pi-plus"
+        (click)="nuevo()">
+        </button>
+    </div>
+    <p-messages [(value)]="mensajes"></p-messages>
+    <p-table
+         [value]="listaPedidos"
+         [loading]="cargando"
+         [paginator]="true"
+         [rows]="10"
+         [rowsPerPageOptions]="[10, 25, 50]"
+         responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Pedido</th>
+            <th>Cantidad</th>
+            <th>Producto</th>
+            <th>Marca</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pedido>
+        <td>{{ pedido.idproducto }} </td>
+        <td>{{ pedido.cantidad }} </td>
+        <td>{{ pedido.produto }} </td>
+        <td>{{ pedido.marca }} </td>
+        <td>
+            <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(pedido)"></button>
+            <button pButton type="button" icon="pi pi -trash" class="p-button-danger" (click)="eliminar(pedido)"></button>
+        </td>
+    </ng-template>
+</p-table>
+</div>
+<p-dialog
+    [header]="tituloDialogo"
+    [(visible)]="dialogoVisible"
+    [modal]="true">
+    <app-formulario-pedido #formulario (recargarPedidos)="cargarPedidos()"></app-formulario-pedido>
+</p-dialog>
+    <p-confirmDialog header ="Confirmar" icon="pi pi-exclamation-triangle" ></p-confirmDialog>
+
