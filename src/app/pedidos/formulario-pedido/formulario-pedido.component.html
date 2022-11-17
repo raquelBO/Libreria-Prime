@@ -1,1 +1,16 @@
-<p>formulario-pedido works!</p>
+<div class="fiel" >
+    <label for="idpedido">Pedido:</label>
+    <p-inputNumber id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
+    [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
+</p-inputNumber>
+    <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el Pedido</small>
+</div>
+
+<div class="fiel">
+    <label for="fecha_pedido">Fecha del Pedido</label>
+    <input id="fecha_pedido" type="text" class="w-full" [(ngModel)]="fecha_pedido" pInputText
+    [ngClass]="{'ng-invalid' : !fecha_pedidoValido, 'ng-dirty': !fecha_pedidoValido}">
+    <small *ngIf="!fecha_pedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>
+</div>
+
+

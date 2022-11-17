@@ -20,10 +20,10 @@ export class ProductoService {
         return this.http.post(this.url, producto, { responseType: 'text' });
     }
     put(producto: Producto): Observable<any>{
-        return this.http.put(`${this.url}`, producto, { responseType: 'test' });
+        return this.http.put(`${this.url}`, producto, { responseType: 'text' });
     }
     delete(producto: Producto): Observable<any>{
-        return this.http.delete((`${this.url}-${producto.id}`, { responseType: 'text' });
+        return this.http.delete(`${this.url}-${producto.idpedido}`, { responseType: 'text' });
     }
 
 }

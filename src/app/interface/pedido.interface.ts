@@ -1,6 +1,6 @@
 export interface Pedido {
     idproducto: number  | null;
-    cantidad:   number  | null;
-    producto:   string  | null;
-    marca   : string| null;
+    idusuario:   number  | null;
+    fecha_pedido:   string  | null;
+    fecha_entrega : string| null;
 }
