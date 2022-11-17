@@ -5,6 +5,7 @@ export interface Usuario{
     direccion: string | null;
     telefono:  number | null;
     ci:        number | null;
+    digitoRuc: number | null;
     correo:    string | null;
-    clave:     string | null;
+    password:     string | null;
 }

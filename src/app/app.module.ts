@@ -23,6 +23,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormularioUsuarioComponent } from './usuarios/formulario-usuario/formulario-usuario.component';
+import { MainAppComponent } from './main-app/main-app.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FormularioUsuarioComponent } from './usuarios/formulario-usuario/formul
     FormularioPedidoComponent,
     FormularioProductoComponent,
     FormularioUsuarioComponent,
+    MainAppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
