@@ -13,19 +13,19 @@ export class FormularioPedidoComponent implements OnInit {
 
   idpedido: number | null = null;
   idusuario: number | null = null;
-  fecha_pedido: string | null = null;
-  fecha_entrega: string | null = null;
+  fechaPedido: string | null = null;
+  fechaEntrega: string | null = null;
 
   idpedidoValido: boolean = true;
   idusuarioValido: boolean = true;
-  fecha_pedidoValido: boolean = true;
-  fecha_entregaValido: boolean = true;
+  fechaPedidoValido: boolean = true;
+  fechaEntregaValido: boolean = true;
 
   guardando: boolean = false;
   mensajes: Message[] = [];
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
-  listaAutores: Pedido[] = [];
+  listaPedidos: Pedido[] = [];
 
   @Output()
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
@@ -53,12 +53,12 @@ export class FormularioPedidoComponent implements OnInit {
   }
   guardar(){
     this.validar();
-    if(this.idpedidoValido && this.idusuarioValido && this.fecha_pedidoValido && this.fecha_entregaValido){
+    if(this.idpedidoValido && this.idusuarioValido && this.fechaPedidoValido && this.fechaEntregaValido){
       const pedido : Pedido = {
-        idproducto: this.idpedido,
+        idpedido: this.idpedido,
         idusuario: this.idusuario,
-        fecha_entrega: this.fecha_entrega,
-        fecha_pedido: this.fecha_pedido
+        fechaEntrega: this.fechaEntrega,
+        fechaPedido: this.fechaEntrega
       }
       if(this.modo === 'Registrar'){
         this.registrar(pedido);
@@ -68,7 +68,7 @@ export class FormularioPedidoComponent implements OnInit {
     }
   }
 
-  private registar(pedido: Pedido){
+  private registrar(pedido: Pedido){
     this.guardando = true;
     this.servicioPedidos.post(pedido).subscribe({
       next: () => {
@@ -100,20 +100,20 @@ export class FormularioPedidoComponent implements OnInit {
   validar(): boolean{
     this.idpedidoValido = this.idpedido !== null;
     this.idusuarioValido = this.idusuario !== null;
-    this.fecha_entregaValido = this.fecha_entrega !== null;
-    this.fecha_pedidoValido = this.fecha_pedido !== null;
-    return this.idpedidoValido && this.idusuarioValido && this.fecha_entregaValido && this.fecha_pedidoValido;
+    this.fechaEntregaValido = this.fechaEntrega !== null;
+    this.fechaPedidoValido = this.fechaPedido !== null;
+    return this.idpedidoValido && this.idusuarioValido && this.fechaEntregaValido && this.fechaPedidoValido;
   }
   limpiarFormulario(){
-     this.idpedidoValido = null;
-     this.idusuarioValido = null;
-     this.fecha_entregaValido = null;
-     this.fecha_pedidoValido = null;
+     this.idpedidoValido = true;
+     this.idusuarioValido = true;
+     this.fechaEntregaValido = true;
+     this.fechaPedidoValido = true;
 
-     this.idpedido = true;
-     this.idusuario = true;
-     this.fecha_entrega = true;
-     this.fecha_pedido = true;
+     this.idpedido = null;
+     this.idusuario = null;
+     this.fechaEntrega = null;
+     this.fechaPedido = null;
 
      this.mensajes = [];
   }

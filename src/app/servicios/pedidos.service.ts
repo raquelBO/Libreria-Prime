@@ -23,7 +23,7 @@ export class PedidoService {
         return this.http.put(`${this.url}`, pedido, { responseType: 'text' });
     }
     delete(pedido: Pedido): Observable<any>{
-        return this.http.delete(`${this.url}-${pedido.idproducto}`, { responseType: 'text' });
+        return this.http.delete(`${this.url}-${pedido.idpedido}`, { responseType: 'text' });
     }
 
 }
