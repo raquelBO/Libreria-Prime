@@ -18,16 +18,16 @@
     <ng-template pTemplate="header">
         <tr>
             <th>Pedido</th>
-            <th>Cantidad</th>
-            <th>Producto</th>
-            <th>Marca</th>
+            <th>Usuario</th>
+            <th>Fecha_pedido</th>
+            <th>Fecha_entrega</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-pedido>
-        <td>{{ pedido.idproducto }} </td>
-        <td>{{ pedido.cantidad }} </td>
-        <td>{{ pedido.produto }} </td>
-        <td>{{ pedido.marca }} </td>
+        <td>{{ pedido.idpedido }} </td>
+        <td>{{ pedido.idusuario }} </td>
+        <td>{{ pedido.fecha_pedido }} </td>
+        <td>{{ pedido.fecha_entrega }} </td>
         <td>
             <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(pedido)"></button>
             <button pButton type="button" icon="pi pi -trash" class="p-button-danger" (click)="eliminar(pedido)"></button>

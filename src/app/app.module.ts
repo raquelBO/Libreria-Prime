@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { PedidosComponent } from './app/pedidos/pedidos.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 import { ProductosComponent } from './productos/productos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { FormularioPedidoComponent } from './pedidos/formulario-pedido/formulario-pedido.component';

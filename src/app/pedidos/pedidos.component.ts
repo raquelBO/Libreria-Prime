@@ -54,10 +54,10 @@ export class PedidosComponent implements OnInit {
   }
 
   editar(pedido: Pedido) {
-    this.formPedido.codigo = pedido.idproducto;
-    this.formPedido.cantidad = pedido.cantidad;
-    this.formPedido.producto = pedido.producto;
-    this.formPedido.marca = pedido.marca;
+    this.formPedido.idpedido = pedido.idproducto;
+    this.formPedido.idusuario = pedido.idusuario;
+    this.formPedido.fecha_entrega = pedido.fecha_entrega;
+    this.formPedido.fecha_pedido = pedido.fecha_pedido;
     this.formPedido.modo = 'Editar';
     this.formPedido.cargarPedidos();
     this.dialogoVisible = true;
@@ -65,7 +65,7 @@ export class PedidosComponent implements OnInit {
   }
   eliminar(pedido: Pedido) {
     this.servicioConfirm.confirm({
-      message: "¿Realmente desea eliminar el pedido: '" + pedido.idproducto + "-" + pedido.cantidad + '-' + pedido.producto + '-' + pedido.marca + "'?",
+      message: "¿Realmente desea eliminar el pedido: '" + pedido.idproducto + "-" + pedido.idusuario + '-' + pedido.fecha_entrega + '-' + pedido.fecha_pedido + "'?",
       accept: () => {
         this.servicioPedidos.delete(pedido).subscribe({
           next: () => {
