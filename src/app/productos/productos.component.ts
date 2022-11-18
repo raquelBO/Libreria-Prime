@@ -33,15 +33,18 @@ export class ProductosComponent implements OnInit {
 
   cargarProductos(): void{
     this.cargando = true;
+    console.log("antes de cargar");
     this.servicioProductos.get().subscribe({
       next: (datos) => {
         this.listaProductos = datos;
         this.cargando = false;
       },
       error: (e) => {
+        console.log("ocurrio un error de lectura del api");
         console.log(e);
         this.cargando = false;
         this.mensajes = [{ severity: 'error', summary: 'Error al cargar productos', detail: e.message}]
+        console.log(this.mensajes);
       }
     });
   }

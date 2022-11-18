@@ -1,9 +1,26 @@
+<div class="fiel">
+    <label for="idproducto">Producto</label>
+
+      <p-dropdown 
+               id="idproducto"
+               styleClass="w-full" 
+               class="w-full"   
+               [options]="listaProductos" 
+               [(ngModel)]="idproducto" 
+               optionLabel="nombre" 
+               optionValue="id"
+               placeholder="Seleccionar..."
+               [showClear]="true" >
+            </p-dropdown>
+
+    <!--input id="producto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
+    [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">-->
 <div class="fiel" >
-    <label for="idproducto">Productos:</label>
-    <p-inputNumber id="idproducto" styleClass="w-full" class="w-full" [(ngModel)]="idproducto"
-    [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">
+    <label for="idpedido">Pedido:</label>
+    <p-inputNumber id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
+    [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
 </p-inputNumber>
-    <small *ngIf="!idproducto" id="codigo-help" class="p-error block">Ingresar el Productos</small>
+    <small *ngIf="!idpedido" id="codigo-help" class="p-error block">Ingresar el Pedido</small>
 </div>
 
 <div class="fiel">
@@ -12,3 +29,16 @@
     [ngClass]="{'ng-invalid' : !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>
 </div>
+<div class="fiel">
+    <label for="fechaEntrega">Fecha de Entrega</label>
+    <input id="fechaEntrega" type="text" class="w-full" [(ngModel)]="fechaEntrega")] pInputText
+    [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}">
+    <small *ngIf="!fechaEntregaValido" id="codigo-help" class="p-error block">Fecha de Entrega</small>
+
+</div>
+
+<div class="fiel">
+    <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
+    <button pButton label="Limpiar" icon="pi pi-trash" class="p-button-secondary" style="margin-left: 10px;" (click)="limpiarFormulario()"></button>
+</div>
+<p-messages [(value)]="mensajes"></p-messages>

@@ -94,7 +94,7 @@ export class FormularioProductoComponent implements OnInit {
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el producto'}];
-        this.cargarProductos.emit(true);
+        this.recargarProductos.emit(true);
       },
       error: (e) => {
         this.guardando = false;

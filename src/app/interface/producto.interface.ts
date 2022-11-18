@@ -1,5 +1,5 @@
 export interface Producto {
-    idproducto: any;
+    idproducto: number | null;
     idpedido: number| null;
     idusuario: string| null;
     fechaPedido: number | null;
