@@ -3,5 +3,5 @@ export interface Producto {
     idpedido: number| null;
     idusuario: string| null;
     fechaPedido: number | null;
-    fechaEntrega: string| null;
+    fechaEntrega: number | null;
 }

@@ -15,12 +15,18 @@ export class MainAppComponent implements OnInit {
       items: [
         {
           label: "Pedidos",
-          icon: PrimeIcons.
+          icon: PrimeIcons.BOOKMARK,
           routerLink: ['pedidos']
         },
         {
           label: "Productos",
-          icon: PrimeIcons,
+          icon: PrimeIcons.BOOK,
+          routerLink: ['productos']
+        },
+        {
+          label: "Usuario",
+          icon: PrimeIcons.USERS,
+          routerLink: ['usuario']
         }
       ]
     }

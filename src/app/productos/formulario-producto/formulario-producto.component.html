@@ -1,1 +1,14 @@
-<p>formulario-producto works!</p>
+<div class="fiel" >
+    <label for="idproducto">Productos:</label>
+    <p-inputNumber id="idproducto" styleClass="w-full" class="w-full" [(ngModel)]="idproducto"
+    [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">
+</p-inputNumber>
+    <small *ngIf="!idproducto" id="codigo-help" class="p-error block">Ingresar el Productos</small>
+</div>
+
+<div class="fiel">
+    <label for="id">Fecha del Pedido</label>
+    <input id="fechaPedido" type="text" class="w-full" [(ngModel)]="fechaPedido" pInputText
+    [ngClass]="{'ng-invalid' : !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
+    <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>
+</div>
