@@ -1,4 +1,4 @@
-<div class="fiel">
+<div class="field">
     <label for="idproducto">Producto</label>
 
       <p-dropdown 
@@ -15,29 +15,29 @@
 
     <!--input id="producto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
     [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">-->
-<div class="fiel" >
-    <label for="idpedido">Pedido:</label>
-    <p-inputNumber id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
+<div class="field" >
+    <label for="idpedido">idPedido:</label>
+    <p-input id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
     [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
-</p-inputNumber>
+</p-input>
     <small *ngIf="!idpedido" id="codigo-help" class="p-error block">Ingresar el Pedido</small>
 </div>
 
-<div class="fiel">
-    <label for="id">Fecha del Pedido</label>
+<div class="field">
+    <label for="idpedido">Fecha del Pedido</label>
     <input id="fechaPedido" type="text" class="w-full" [(ngModel)]="fechaPedido" pInputText
     [ngClass]="{'ng-invalid' : !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>
 </div>
-<div class="fiel">
+<div class="field">
     <label for="fechaEntrega">Fecha de Entrega</label>
-    <input id="fechaEntrega" type="text" class="w-full" [(ngModel)]="fechaEntrega")] pInputText
+    <input id="fechaEntrega" type="text" class="w-full" [(ngModel)]="fechaEntrega" pInputText
     [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}">
     <small *ngIf="!fechaEntregaValido" id="codigo-help" class="p-error block">Fecha de Entrega</small>
 
 </div>
 
-<div class="fiel">
+<div class="field">
     <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
     <button pButton label="Limpiar" icon="pi pi-trash" class="p-button-secondary" style="margin-left: 10px;" (click)="limpiarFormulario()"></button>
 </div>

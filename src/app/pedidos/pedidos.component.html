@@ -1,7 +1,7 @@
 <div class="tarjeta">
     <div style="margin-bottom: 15px;">
          <button 
-        pBtutton
+        pButton
         Label="Agregar"
         icon="pi pi-plus"
         (click)="nuevo()">
@@ -12,7 +12,7 @@
          [value]="listaPedidos"
          [loading]="cargando"
          [paginator]="true"
-         [rows]="10"
+         [rows]="15"
          [rowsPerPageOptions]="[10, 25, 50]"
          responsiveLayout="scroll">
     <ng-template pTemplate="header">

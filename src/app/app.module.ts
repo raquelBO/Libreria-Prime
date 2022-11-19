@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormularioUsuarioComponent } from './usuarios/formulario-usuario/formulario-usuario.component';
 import { MainAppComponent } from './main-app/main-app.component';
@@ -53,11 +54,9 @@ import { LoginComponent } from './login/login.component';
     MessageModule,
     MessagesModule,
     ConfirmDialogModule,
-    DropdownModule
-    
-    
+    DropdownModule,  
   ],
-  providers: [],
+  providers: [ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

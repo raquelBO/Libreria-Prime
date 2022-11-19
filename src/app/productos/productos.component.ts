@@ -33,7 +33,7 @@ export class ProductosComponent implements OnInit {
 
   cargarProductos(): void{
     this.cargando = true;
-    console.log("antes de cargar");
+
     this.servicioProductos.get().subscribe({
       next: (datos) => {
         this.listaProductos = datos;
