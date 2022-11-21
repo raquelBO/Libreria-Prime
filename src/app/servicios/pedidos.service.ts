@@ -7,6 +7,7 @@ import { Pedido } from '../interface/pedido.interface';
     providedIn: 'root'
 })
 export class PedidoService {
+    
     url: string = 'http://localhost:3000/pedido';
 
     constructor(

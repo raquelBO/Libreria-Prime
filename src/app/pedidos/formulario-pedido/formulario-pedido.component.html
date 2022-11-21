@@ -7,8 +7,8 @@
 </div>
 
 <div class="field">
-    <label for="idusuario">Usuario</label>
-    <input id="idusuario" type="text" class="w-full" [(ngModel)]="idusuario" pInputText
+    <label for="idusuario">Usuario:</label>
+    <input id="idusuario" type="text" styleclass="w-full" class="w-full" [(ngModel)]="idusuario" pInputText
     [ngClass]="{'ng-invalid' : !idusuarioValido, 'ng-dirty': !idusuarioValido}">
     <small *ngIf="!idusuarioValido" id="codigo-help" class="p-error block">Ingresar el Usuario</small>
 </div>
