@@ -28,6 +28,11 @@ export class MainAppComponent implements OnInit {
           icon: PrimeIcons.USERS,
           routerLink: ['usuario']
         },
+        {
+          label: "Detalles Pedido",
+          icon: PrimeIcons.BOOK,
+          routerLink: ['detallesPedido']
+        },
       ]
     }
   ];
