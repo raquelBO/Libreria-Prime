@@ -3,6 +3,9 @@ import { Message } from 'primeng/api';
 import { Pedido } from 'src/app/interface/pedido.interface';
 import { PedidoService } from 'src/app/servicios/pedidos.service';
 import { ProductoService } from 'src/app/servicios/productos.service';
+import { DetallesPedidoService } from 'src/app/servicios/detallesPedidos.service';
+import { Producto } from 'src/app/interface/producto.interface';
+import  { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
 
 @Component({
   selector: 'app-formulario-pedido',
@@ -26,13 +29,16 @@ export class FormularioPedidoComponent implements OnInit {
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
   listaPedidos: Pedido[] = [];
+  listaProductos: Producto [] = [];
+  listaDetallesPedido: DetallesPedido[] = [];
 
   @Output()
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private servicioPedidos: PedidoService,
-    private servicioProductos: ProductoService
+    private servicioProductos: ProductoService,
+    private servicioDetallesPedido: DetallesPedidoService
   ) { }
 
   ngOnInit(): void {

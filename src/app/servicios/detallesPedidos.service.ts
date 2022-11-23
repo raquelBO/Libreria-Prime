@@ -8,7 +8,7 @@ import { DetallesPedido } from '../interface/detallesPedido.interface';
 })
 export class DetallesPedidoService {
 
-  url: string = 'http://localhost:3000/libro';
+  url: string = 'http://localhost:3000/detallesPedido';
 
   constructor(
     private http: HttpClient

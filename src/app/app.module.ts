@@ -23,9 +23,10 @@ import { ConfirmationService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { MainAppComponent } from './main-app/main-app.component';
 import { LoginComponent } from './login/login.component';
-import { DetallesPedidosComponent } from './detalles-pedidos/detalles-pedidos.component';
+import { DetallesPedidoComponent } from './detalles-pedidos/detalles-pedidos.component';
+import { FormularioDetallesPedidoComponent } from './detalles-pedidos/formulario-detalle-pedido/formulario-detalle-pedido.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { FormularioDetallePedidoComponent } from './detalles-pedidos/formulario-detalle-pedido/formulario-detalle-pedido.component';
+import { FormularioUsuarioComponent } from './usuario/formulario-usuario/formulario-usuario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +37,9 @@ import { FormularioDetallePedidoComponent } from './detalles-pedidos/formulario-
     MainAppComponent,
     LoginComponent,
     UsuarioComponent,
-    FormularioDetallePedidoComponent,
-    DetallesPedidosComponent,
+    DetallesPedidoComponent,
+    FormularioDetallesPedidoComponent,
+    FormularioUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { FormularioDetallePedidoComponent } from './detalles-pedidos/formulario-
     MessageModule,
     MessagesModule,
     ConfirmDialogModule,
-    DropdownModule,  
+    DropdownModule, 
+
   ],
   providers: [ConfirmationService],
   bootstrap: [AppComponent]

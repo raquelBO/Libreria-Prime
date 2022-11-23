@@ -1,0 +1,65 @@
+<div class="field" >
+    <label for="idusuario">Id</label>
+    <p-inputNumber id="idusuario" styleClass="w-full" class="w-full" [(ngModel)]="idusuario"
+    [ngClass]="{'ng-invalid': !idusuario, 'ng-dirty': !idusuarioValido}">
+</p-inputNumber>
+    <small *ngIf="!idusuario" id="codigo-help" class="p-error block"> Ingresar el idusuario</small>
+</div>
+
+<div class="field">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" class="w-full" [(ngModel)]="nombre" pInputText
+    [ngClass]="{'ng-invalid': !nombreValido, 'ng-dirty': !nombreValido} ">
+    <small *ngIf="!nombreValido" id="codigo-help" class="p-error block">Ingresar el nombre</small>
+</div>
+<div class="field">
+    <label for="apellido">Apellido</label>
+    <input id="apellido" type="text" class="w-full" [(ngModel)]="apellido" pInputText
+    [ngClass]="{'ng-invalid': !apellidoValido, 'ng-dirty': !apellidoValido} ">
+    <small *ngIf="!apellidoValido" id="codigo-help" class="p-error block">Ingresar el apellido</small>
+</div>
+<div class="field">
+    <label for="direccion">Direccion</label>
+    <input id="direccion" type="text" class="w-full" [(ngModel)]="direccion" pInputText
+    [ngClass]="{'ng-invalid': !direccionValido, 'ng-dirty': !direccionValido} ">
+    <small *ngIf="!direccionValido" id="codigo-help" class="p-error block">Ingresar el direccion</small>
+</div>
+<div class="field">
+    <label for="telefono">Telefono</label>
+    <p-inputNumber id="telefono" styleClass="w-full" class="w-full"[(ngModel)]="telefono"
+    [ngClass]="{'ng-invalid' : !telefonoValido, 'ng-dirty': !telefonoValido}">
+</p-inputNumber>
+    <small *ngIf="!telefonoValido" id="codigo-help" class="p-error block">Ingresar el telefono</small>
+</div>
+<div class="field">
+    <label for="ci">Ci</label>
+    <p-inputNumber id="ci" styleClass="w-full" class="w-full"[(ngModel)]="ci"
+    [ngClass]="{'ng-invalid' : !ciValido, 'ng-dirty': !ciValido}">
+</p-inputNumber>
+    <small *ngIf="!ciValido" id="codigo-help" class="p-error block">Ingresar el numero de ci</small>
+</div>
+<div class="field">
+    <label for="digitoRuc">Digito Ruc.</label>
+    <p-inputNumber id="digitoRuc" styleClass="w-full" class="w-full"[(ngModel)]="digitoRuc"
+    [ngClass]="{'ng-invalid' : !digitoRucValido, 'ng-dirty': !digitoRucValido}">
+</p-inputNumber>
+    <small *ngIf="!digitoRucValido" id="codigo-help" class="p-error block">Ingresar el digito de Ruc</small>
+</div>
+<div class="field">
+    <label for="correo">Correo</label>
+    <input id="correo" type="text" class="w-full" [(ngModel)]="correo" pInputText
+    [ngClass]="{'ng-invalid': !correoValido, 'ng-dirty': !correoValido} ">
+    <small *ngIf="!correoValido" id="codigo-help" class="p-error block">Ingresar el correo</small>
+</div>
+<div class="field">
+    <label for="password">Password</label>
+    <input id="password" type="text" class="w-full" [(ngModel)]="password" pInputText
+    [ngClass]="{'ng-invalid': !passwordValido, 'ng-dirty': !passwordValido} ">
+    <small *ngIf="!passwordValido" id="codigo-help" class="p-error block">Ingresar el password</small>
+</div>
+
+<div class="field">
+    <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
+    <button pButton label="Limpiar" icon="pi pi-trash" class="p-button-secondary" style="margin-left: 10px;" (click)="limpiarFormulario()"></button>
+</div>
+<p-messages [(value)]="mensajes"></p-messages>

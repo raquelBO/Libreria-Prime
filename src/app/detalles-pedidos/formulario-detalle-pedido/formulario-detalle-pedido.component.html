@@ -1,1 +1,42 @@
-<p>formulario-detalle-pedido works!</p>
+<div class="field">
+     <label for="iddetallesPedido">Detalles Pedido</label>
+     <p-inputNumber id="iddetallesPedido" styleClass="w-full" class="w-full" [(ngModel)]="iddetallesPedido"
+     [ngClass]="{'ng-invalid': !iddetallesPedido, 'ng-dirty': !iddetallesPedido}">
+     </p-inputNumber>
+     <small *ngIf="!iddetallesPedido" id="codigo-help" class="p-error block">Ingresar el detalle de pedido</small>
+
+    </div>
+
+    <div class="field">
+        <label for="idproducto">Producto</label>
+        <input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto"
+        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproducto}">
+        <small *ngIf="!idproducto" id="codigo-help" class="p-error block">Ingresar el idproducto</small>
+    </div>
+
+    <div class="field">
+        <label for="!cantidad">Cantidad</label>
+        <input id="cantidad" type="number" class="w-full" [(ngModel)]="cantidad"
+        [ngClass]="{'ng invalid' : !cantidad, 'ng-dirty': !cantidad}">
+        <small *ngIf="!cantidad" id="codigo-help" class="p-error block">Ingresar la cantidad</small>
+    </div>
+
+    <div class="field">
+        <label for="!pecio">Precio</label>
+        <input id="precio" type="number" class="w-full" [(ngModel)]="precio"
+        [ngClass]="{'ng invalid' : !precio, 'ng-dirty': !precio}">
+        <small *ngIf="!precio" id="codigo-help" class="p-error block">Ingresar la precio</small>
+    </div>
+
+    <div class="field">
+        <label for="!idpedido">Pedido</label>
+        <input id="idpedido" type="number" class="w-full" [(ngModel)]="idpedido"
+        [ngClass]="{'ng invalid' : !idpedido, 'ng-dirty': !idpedido}">
+        <small *ngIf="!idpedido" id="codigo-help" class="p-error block">Ingresar el pedido</small>
+    </div>
+
+    <div class="field">
+        <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
+        <button pButton label="Limpiar" icon="pi pi-trash" class="p-button-secondary" style="margin-left: 10px;" (click)="limpiarFormulario()"></button>
+    </div>
+    <p-messages [(value)]="mensajes"></p-messages>
