@@ -1,21 +1,26 @@
 <div class="centrado">
     <div class="tarjeta tarjeta-login">
-        <div class="field">
+        <form [formGroup]="form">
+         <div class="field">
             <span class="p-input-icon-left w-full">
               <i class="pi pi-user"></i>  
-            <input pInputText placeholder="Nro Documento" class="w-full">
+            <input pInputText placeholder="Nro Documento" class="w-full" formControlName="ci">
             </span>  
-        </div>
-        <div class="field">
+            <small *ngIf="form.get('ci')?.invalid && form.get('ci')?.dirty" class="p-error block">Ingrese el nro. de documento.</small>
+         </div>
+         <div class="field">
             <span class="p-input-icon-left w-full">
                 <i class="pi pi-key"></i>
-                <input pPassword type="password" pInputText placeholder="Contraseña" class="w-full">
-                
+                <input pPassword type="password" pInputText placeholder="Contraseña" class="w-full" formControlName="password"> 
             </span>
-        </div>
-        <div class="field">
-            <button pButton label="Login" class="w-full" icon="pi pi-unlock"></button>
-        </div>
+            <small *ngIf="form.get('password')?.invalid && form.get('password')?.dirty" class="p-error block">Ingrese la contraseña</small>
+         </div>
+         <div class="field">
+            <button pButton label="Login" class="w-full" icon="pi pi-unlock" (click)="iniciarSesion()"></button>
+         </div>
+         <div class="field">
+            <p-messages [(value)]="mensajes"></p-messages>
+         </div>
+        </form>
     </div>
 </div>
-

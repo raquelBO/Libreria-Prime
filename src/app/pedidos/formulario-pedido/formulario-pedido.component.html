@@ -7,15 +7,17 @@
 </div>
 
 <div class="field">
-    <label for="idusuario">Usuario:</label>
-    <input id="idusuario" type="text" styleclass="w-full" class="w-full" [(ngModel)]="idusuario" pInputText
+    <label for="idusuario">idUsuario:</label>
+    <p-inputNumber id="idusuario" styleclass="w-full" class="w-full" [(ngModel)]="idusuario"
     [ngClass]="{'ng-invalid' : !idusuarioValido, 'ng-dirty': !idusuarioValido}">
-    <small *ngIf="!idusuarioValido" id="codigo-help" class="p-error block">Ingresar el Usuario</small>
+    </p-inputNumber>
+    <small *ngIf="!idusuarioValido" id="codigo-help" class="p-error block">Ingresar el idUsuario</small>
 </div>
 <div class="field">
     <label for="fechaPedido">Fecha del Pedido</label>
-    <input id="fechaPedido" type="text" class="w-full" [(ngModel)]="fechaPedido" pInputText
+    <p-inputNumber id="fechaPedido" class="w-full" [(ngModel)]="fechaPedido"
     [ngClass]="{'ng-invalid': !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
+    </p-inputNumber>
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Fecha del Pedido</small>
 
 </div>

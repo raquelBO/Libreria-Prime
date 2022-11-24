@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { Producto } from 'src/app/interface/producto.interface'; 
-import { PedidoService } from 'src/app/servicios/pedidos.service';
 import { ProductoService } from 'src/app/servicios/productos.service';
 
 
@@ -37,7 +36,6 @@ export class FormularioProductoComponent implements OnInit {
 
   constructor(
     private servicioProductos: ProductoService,
-    private servicioPedidos: PedidoService
   ) { }
 
   ngOnInit(): void {
@@ -60,7 +58,7 @@ export class FormularioProductoComponent implements OnInit {
     this.validar();
     if(this.idproductoValido && this.idpedidoValido && this.idusuarioValido && this.fechaPedidoValido && this.fechaEntregaValido){
       const producto : Producto = {
-        idproducto: this.idpedido,
+        idproducto: this.idproducto,
         idpedido: this.idpedido,
         idusuario: this.idusuario,
         fechaEntrega: this.fechaEntrega,

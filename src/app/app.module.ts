@@ -15,7 +15,7 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
@@ -27,6 +27,8 @@ import { DetallesPedidoComponent } from './detalles-pedidos/detalles-pedidos.com
 import { FormularioDetallesPedidoComponent } from './detalles-pedidos/formulario-detalle-pedido/formulario-detalle-pedido.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { FormularioUsuarioComponent } from './usuario/formulario-usuario/formulario-usuario.component';
+import { SesionGuard } from './guards/sesion.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,10 +59,11 @@ import { FormularioUsuarioComponent } from './usuario/formulario-usuario/formula
     MessageModule,
     MessagesModule,
     ConfirmDialogModule,
-    DropdownModule, 
+    DropdownModule,
+    ReactiveFormsModule
 
   ],
-  providers: [ConfirmationService],
+  providers: [ConfirmationService, SesionGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

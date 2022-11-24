@@ -1,5 +1,5 @@
 <div class="field">
-    <label for="idproducto">Producto</label>
+    <label for="idproducto">Product</label>
 
       <p-dropdown 
                id="idproducto"
@@ -15,16 +15,15 @@
 
     <!--input id="producto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
     [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">-->
-<div class="field" >
-    <label for="idpedido">Pedido:</label>
-    <p-input id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
-    [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
-</p-input>
-    <small *ngIf="!idpedido" id="codigo-help" class="p-error block">Ingresar el Pedido</small>
-</div>
+    <div class="field">
+        <label for="idpedido">Pedido</label>
+        <input id="idedido" type="text" class="w-full" [(ngModel)]="idpedido" pInputText
+        [ngClass]="{'ng-invalid' : !idpedidoValido, 'ng-dirty': !fechaPedidoValido}">
+        <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el idpedido</small>
+    </div>
 
 <div class="field">
-    <label for="idpedido">Fecha del Pedido</label>
+    <label for="fechaPedido">Fecha del Pedido</label>
     <input id="fechaPedido" type="text" class="w-full" [(ngModel)]="fechaPedido" pInputText
     [ngClass]="{'ng-invalid' : !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>

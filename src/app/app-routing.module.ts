@@ -6,9 +6,11 @@ import { UsuarioComponent } from "./usuario/usuario.component";
 import { LoginComponent } from "./login/login.component";
 import { MainAppComponent } from "./main-app/main-app.component";
 import { DetallesPedidoComponent } from "./detalles-pedidos/detalles-pedidos.component";
+import { SesionGuard } from "./guards/sesion.guard";
 
 const routes : Routes = [
-    { path: 'app', component: MainAppComponent, children: [
+    { path: '', pathMatch: 'full', redirectTo: 'login' },
+    { path: 'app', component: MainAppComponent, canActivate: [SesionGuard] ,children: [
         { path: 'pedidos', component: PedidosComponent },
         { path: 'productos', component: ProductosComponent },
         { path: 'usuario', component: UsuarioComponent },
