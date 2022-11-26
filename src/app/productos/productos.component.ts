@@ -58,10 +58,11 @@ export class ProductosComponent implements OnInit {
   }
   editar(producto: Producto){
     this.formProducto.idproducto = producto.idproducto;
-    this.formProducto.idpedido = producto.idpedido;
-    this.formProducto.idusuario = producto.idusuario;
-    this.formProducto.fechaPedido = producto.fechaPedido;
-    this.formProducto.fechaEntrega = producto.fechaEntrega;
+    this.formProducto.nombrePro = producto.nombrePro;
+    this.formProducto.precioPro = producto.precioPro
+    this.formProducto.cantidadPro = producto.cantidadPro;
+    this.formProducto.produOferta = producto.produOferta;
+    this.formProducto.marcaPro = producto.marcaPro;
     this.formProducto.modo = 'Editar';
     this.formProducto.cargarProductos();
     this.dialogoVisible = true;
@@ -69,7 +70,7 @@ export class ProductosComponent implements OnInit {
   }
   eliminar(producto: Producto){
     this.servicioConfirm.confirm({
-      message: "¿Realmente desea eliminar el producto: '" + producto.idproducto + "-" + producto.idpedido + "-" + producto.fechaEntrega + "-" + producto.fechaEntrega + "-" + "'?",
+      message: "¿Realmente desea eliminar el producto: '" + producto.idproducto + "-" + producto.nombrePro + "-" + producto.precioPro + "-" + producto.cantidadPro + "-" + producto.produOferta + "-" + producto.marcaPro + "'?",
       accept: () => {
         this.servicioProductos.delete(producto).subscribe({
           next: () => {

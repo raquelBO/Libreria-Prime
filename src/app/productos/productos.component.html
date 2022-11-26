@@ -1,49 +1,43 @@
 <div class="tarjeta">
     <div style="margin-bottom: 15px;">
-         <button 
-        pButton
-        Label="Agregar"
-        icon="pi pi-plus"
-        (click)="nuevo()">
+        <button pButton Label="Agregar" icon="pi pi-plus" (click)="nuevo()">
         </button>
     </div>
     <p-messages [(value)]="mensajes"></p-messages>
-    <p-table
-         [value]="listaProductos"
-         [loading]="cargando"
-         [paginator]="true"
-         [rows]="10"
-         [rowsPerPageOptions]="[10, 25, 50]"
-         responsiveLayout="scroll">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Producto</th>
-            <th>Pedido</th>
-            <th>Usuario</th>
-            <th>Fecha de Pedido</th>
-            <th>Fecha de Entrega</th>
-            <th>Acciones</th>
+    <p-table [value]="listaProductos" [loading]="cargando" [paginator]="true" [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Id Producto</th>
+                <th>Nombre Pro</th>
+                <th>Precio Pro</th>
+                <th>Cantidad de Producto</th>
+                <th>Productos en Oferta</th>
+                <th>Marca del Producto</th>
+                <th>Acciones</th>
 
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-producto>
-        <th>{{ producto.idproducto }} </th>
-        <td>{{ producto.idpedido }} </td>
-        <td>{{ producto.idusuario }} </td>
-        <td>{{ producto.fechaPedido }} </td>
-        <td>{{ producto.fechaEntrega }} </td>
-        <td>
-            <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(producto)"></button>
-            <button pButton type="button" icon="pi pi -trash" class="p-button-danger" (click)="eliminar(producto)"></button>
-        </td>
-    </ng-template>
-</p-table>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-producto>
+            <tr>
+                <td>{{ producto.idproducto }} </td>
+                <td>{{ producto.nombrePro }} </td>
+                <td>{{ producto.precioPro }} </td>
+                <td>{{ producto.cantidadPro }} </td>
+                <td>{{ producto.produOferta }} </td>
+                <td>{{ producto.marcaPro }} </td>
+                <td>
+                    <button pButton type="button" icon="pi pi-pencil" style="margin:5px;"
+                        (click)="editar(producto)"></button>
+                    <button pButton type="button" icon="pi pi-trash" class="p-button-danger" style="margin:5px;"
+                        (click)="eliminar(producto)"></button>
+                </td>
+            </tr>
+            
+        </ng-template>
+    </p-table>
 </div>
-<p-dialog
-    [header]="tituloDialogo"
-    [(visible)]="dialogoVisible"
-    [modal]="true">
+<p-dialog [header]="tituloDialogo" [(visible)]="dialogoVisible" [modal]="true">
     <app-formulario-producto #formulario (recargarPedidos)="cargarProductos()"></app-formulario-producto>
 </p-dialog>
-    <p-confirmDialog header ="Confirmar" icon="pi pi-exclamation-triangle" ></p-confirmDialog>
-
+<p-confirmDialog header="Confirmar" icon="pi pi-exclamation-triangle"></p-confirmDialog>

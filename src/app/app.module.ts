@@ -28,6 +28,7 @@ import { FormularioDetallesPedidoComponent } from './detalles-pedidos/formulario
 import { UsuarioComponent } from './usuario/usuario.component';
 import { FormularioUsuarioComponent } from './usuario/formulario-usuario/formulario-usuario.component';
 import { SesionGuard } from './guards/sesion.guard';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SesionGuard } from './guards/sesion.guard';
     MessagesModule,
     ConfirmDialogModule,
     DropdownModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CalendarModule
 
   ],
   providers: [ConfirmationService, SesionGuard],

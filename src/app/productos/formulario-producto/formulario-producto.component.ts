@@ -12,16 +12,18 @@ import { ProductoService } from 'src/app/servicios/productos.service';
 export class FormularioProductoComponent implements OnInit {
 
   idproducto: number | null = null;
-  idpedido: number | null = null;
-  idusuario: string | null = null;
-  fechaPedido: number  | null = null;
-  fechaEntrega: number | null = null;
+  nombrePro: string | null = null;
+  precioPro: number | null = null;
+  cantidadPro: number  | null = null;
+  produOferta: string | null = null;
+  marcaPro: string | null = null;
 
   idproductoValido: boolean = true;
-  idpedidoValido: boolean = true;
-  idusuarioValido: boolean = true;
-  fechaEntregaValido: boolean = true;
-  fechaPedidoValido: boolean = true;
+  nombreProValido: boolean = true;
+  precioProValido: boolean = true;
+  cantidadProValido: boolean = true;
+  produOfertaValido: boolean = true;
+  marcaProValido: boolean = true;
 
   guardando: boolean = false;
   mensajes: Message[] = [];
@@ -56,13 +58,14 @@ export class FormularioProductoComponent implements OnInit {
   }
   guardar(){
     this.validar();
-    if(this.idproductoValido && this.idpedidoValido && this.idusuarioValido && this.fechaPedidoValido && this.fechaEntregaValido){
+    if(this.idproductoValido && this.nombreProValido && this.precioProValido && this.cantidadProValido && this.produOfertaValido && this.marcaProValido){
       const producto : Producto = {
         idproducto: this.idproducto,
-        idpedido: this.idpedido,
-        idusuario: this.idusuario,
-        fechaEntrega: this.fechaEntrega,
-        fechaPedido: this.fechaEntrega
+        nombrePro: this.nombrePro,
+        precioPro: this.precioPro,
+        cantidadPro: this.cantidadPro,
+        produOferta: this.produOferta,
+        marcaPro: this.marcaPro
       }
       if(this.modo === 'Registrar'){
         this.registrar(producto);
@@ -103,24 +106,27 @@ export class FormularioProductoComponent implements OnInit {
   }
   validar(): boolean{
     this.idproductoValido = this.idproducto !== null;
-    this.idpedidoValido = this.idpedido !== null;
-    this.idusuarioValido = this.idusuario !== null;
-    this.fechaEntregaValido = this.fechaEntrega !== null;
-    this.fechaPedidoValido = this.fechaPedido !== null;
-    return this.idproductoValido && this.idpedidoValido && this.idusuarioValido && this.fechaEntregaValido && this.fechaPedidoValido;
+    this.nombreProValido = this.nombrePro !== null;
+    this.precioProValido = this.precioPro !== null;
+    this.cantidadProValido = this.cantidadPro !== null;
+    this.produOfertaValido= this.produOferta !== null;
+    this.marcaProValido = this.marcaPro !== null;
+    return this.idproductoValido && this.nombreProValido && this.precioProValido && this.cantidadProValido && this.produOfertaValido && this.marcaProValido;
   }
   limpiarFormulario(){
     this.idproductoValido = true;
-     this.idpedidoValido = true;
-     this.idusuarioValido = true;
-     this.fechaEntregaValido = true;
-     this.fechaPedidoValido = true;
+     this.nombreProValido = true;
+     this.precioProValido = true;
+     this.cantidadProValido = true;
+     this.produOfertaValido = true;
+     this.marcaProValido = true;
 
      this.idproducto = null;
-     this.idpedido = null;
-     this.idusuario = null;
-     this.fechaEntrega = null;
-     this.fechaPedido = null;
+     this.nombrePro = null;
+     this.precioPro = null;
+     this.cantidadPro = null;
+     this.produOferta = null;
+     this.marcaPro = null;
 
      this.mensajes = [];
   }

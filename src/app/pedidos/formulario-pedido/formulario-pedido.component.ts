@@ -13,8 +13,8 @@ export class FormularioPedidoComponent implements OnInit {
 
   idpedido: number | null = null;
   idusuario: number | null = null;
-  fechaPedido: string | null = null;
-  fechaEntrega: string | null = null;
+  fechaPedido: Date | null = null;
+  fechaEntrega: Date | null = null;
 
   idpedidoValido: boolean = true;
   idusuarioValido: boolean = true;

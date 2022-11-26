@@ -1,39 +1,44 @@
-<div class="field">
-    <label for="idproducto">Product</label>
-
-      <p-dropdown 
-               id="idproducto"
-               styleClass="w-full" 
-               class="w-full"   
-               [options]="listaProductos" 
-               [(ngModel)]="idproducto" 
-               optionLabel="nombre" 
-               optionValue="id"
-               placeholder="Seleccionar..."
-               [showClear]="true" >
-            </p-dropdown>
-
-    <!--input id="producto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
-    [ngClass]="{'ng-invalid': !idproductoValido, 'ng-dirty': !idproductoValido}">-->
-    <div class="field">
-        <label for="idpedido">Pedido</label>
-        <input id="idedido" type="text" class="w-full" [(ngModel)]="idpedido" pInputText
-        [ngClass]="{'ng-invalid' : !idpedidoValido, 'ng-dirty': !fechaPedidoValido}">
-        <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el idpedido</small>
+<div>
+    <label for="idproducto">IdProducto</label>
+    <p-inputNumber id="idproducto" type="text" class="w-full" styleClass="w-full" [(ngModel)]="idproducto" 
+    [ngClass]="{'ng-invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">
+    </p-inputNumber>
+    <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block">Ingresar el idproducto</small>
     </div>
 
 <div class="field">
-    <label for="fechaPedido">Fecha del Pedido</label>
-    <input id="fechaPedido" type="text" class="w-full" [(ngModel)]="fechaPedido" pInputText
-    [ngClass]="{'ng-invalid' : !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}">
-    <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Ingresar la fecha del pedido</small>
+    <label for="nombrePro">Nombre del producto</label>
+    <input id="nombrePro" type="text" class="w-full" styleClass="w-full" [(ngModel)]="nombrePro" pInputText
+    [ngClass]="{'ng-invalid' : !nombrePro, 'ng-dirty': !nombrePro}">
+    <small *ngIf="!nombreProValido" id="codigo-help" class="p-error block">Nombre de Producto</small>
 </div>
 <div class="field">
-    <label for="fechaEntrega">Fecha de Entrega</label>
-    <input id="fechaEntrega" type="text" class="w-full" [(ngModel)]="fechaEntrega" pInputText
-    [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}">
-    <small *ngIf="!fechaEntregaValido" id="codigo-help" class="p-error block">Fecha de Entrega</small>
+    <label for="precioPro">PrecioPro</label>
+    <p-inputNumber id="precioPro" type="text" class="w-full" styleClass="w-full" [(ngModel)]="precioPro"
+    [ngClass]="{'ng-invalid': !precioPro, 'ng-dirty': !precioPro}">
+    </p-inputNumber>
+    <small *ngIf="!precioProValido" id="codigo-help" class="p-error block">Precio de Producto</small>
 
+</div>
+<div class="field">
+    <label for="cantidadPro">cantidadPro</label>
+    <p-inputNumber id="cantidadPro" type="text" class="w-full" styleClass="w-full" [(ngModel)]="cantidadPro"
+    [ngClass]="{'ng-invalid': !cantidadPro, 'ng-dirty': !cantidadPro}">
+    </p-inputNumber>
+    <small *ngIf="!cantidadProValido" id="codigo-help" class="p-error block">Cantidad del producto</small>
+
+</div>
+<div class="field">
+    <label for="produOferta">Producto Oferta</label>
+    <input id="produOferta" type="text" class="w-full" [(ngModel)]="produOferta" pInputText
+    [ngClass]="{'ng-invalid': !produOfertaValido, 'ng-dirty': !produOfertaValido} ">
+    <small *ngIf="!produOfertaValido" id="codigo-help" class="p-error block">Ingresar Produ. Oferta</small>
+</div>
+<div class="field">
+    <label for="marcaPro">Marca Pro</label>
+    <input id="marcaPro" type="text" class="w-full" [(ngModel)]="marcaPro" pInputText
+    [ngClass]="{'ng-invalid': !marcaProValido, 'ng-dirty': !marcaProValido} ">
+    <small *ngIf="!marcaProValido" id="codigo-help" class="p-error block">Ingresar la Marca</small>
 </div>
 
 <div class="field">

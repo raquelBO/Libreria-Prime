@@ -46,7 +46,7 @@ export class PedidosComponent implements OnInit {
   }
 
   nuevo() {
-    this.tituloDialogo = 'Ragistrar pedido';
+    this.tituloDialogo = 'Registrar pedido';
     this.formPedido.limpiarFormulario();
     this.formPedido.modo = 'Registrar';
     this.formPedido.cargarPedidos();

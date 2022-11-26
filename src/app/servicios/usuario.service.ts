@@ -8,7 +8,7 @@ import { Usuario } from '../interface/usuario.interface';
 })
 export class UsuarioService {
 
-  url: string = 'http://localhost:3000/Libreria';
+  url: string = 'http://localhost:3000/usuario';
 
   constructor(
     private http: HttpClient

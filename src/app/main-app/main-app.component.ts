@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 
 @Component({
@@ -12,6 +13,7 @@ export class MainAppComponent implements OnInit {
     {
       label: "Libreria",
       icon: PrimeIcons.BOOK,
+      
       items: [
         {
           label: "Pedidos",
@@ -33,13 +35,28 @@ export class MainAppComponent implements OnInit {
           icon: PrimeIcons.BOOK,
           routerLink: ['detallesPedido']
         },
+        {
+          separator: true
+        },
+        {
+          label: 'Cerrar Sesion',
+          icon: PrimeIcons.LOCK,
+          command: () => this.cerrarSesion()
+        }
       ]
     }
   ];
 
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  public cerrarSesion(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
 }
