@@ -12,7 +12,7 @@ import { DetallesPedidoService } from 'src/app/servicios/detallesPedidos.service
 export class FormularioDetallesPedidoComponent implements OnInit {
 
   iddetallesPedido: number  | null = null;
-    idproducto:   string  | null = null;
+    idproducto:   number  | null = null;
     cantidad:   number  | null = null;
     precio : number | null = null;
     idpedido : number | null = null ;
@@ -82,7 +82,9 @@ export class FormularioDetallesPedidoComponent implements OnInit {
       },
       error: (e) => {
         this.guardando = false;
-        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: e.error}];
+        console.log(e);
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: mensaje}];
       }
     });
   }
@@ -97,7 +99,8 @@ export class FormularioDetallesPedidoComponent implements OnInit {
       error: (e) => {
         this.guardando = false;
         console.log(e);
-        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: e.error}];
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: mensaje}];
       }
     });
   }

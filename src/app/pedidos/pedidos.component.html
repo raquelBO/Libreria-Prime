@@ -1,8 +1,8 @@
 <div class="tarjeta">
     <div style="margin-bottom: 15px;">
-         <button 
-        pButton
-        Label="Agregar"
+        <button 
+        pButton 
+        label="Agregar"
         icon="pi pi-plus"
         (click)="nuevo()">
         </button>
@@ -17,8 +17,8 @@
          responsiveLayout="scroll">
     <ng-template pTemplate="header">
         <tr>
-            <th>Pedido</th>
-            <th>Usuario</th>
+            <th>idPedido</th>
+            <th>idUsuario</th>
             <th>Fecha de Pedido</th>
             <th>Fecha de Entrega</th>
             <th>Acciones</th>
@@ -26,20 +26,22 @@
     </ng-template>
     <ng-template pTemplate="body" let-pedido>
         <tr>
-        <td>{{ pedido.idpedido }} </td>
-        <td>{{ pedido.idusuario }} </td>
-        <td>{{ pedido.fechaPedido }} </td>
-        <td>{{ pedido.fechaEntrega }} </td>
-        <td>
-            <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(pedido)"></button>
-            <button pButton type="button" icon="pi pi -trash" class="p-button-danger" (click)="eliminar(pedido)"></button>
-        </td>
+            <td>{{ pedido.idpedido }} </td>
+            <td>{{ pedido.idusuario }} </td>
+            <td>{{ pedido.fechaPedido }} </td>
+            <td>{{ pedido.fechaEntrega }} </td>
+            <td>
+                <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;"
+                    (click)="editar(pedido)"></button>
+                <button pButton type="button" icon="pi pi-trash" class="p-button-danger" style="margin:5px;"
+                    (click)="eliminar(pedido)"></button>
+            </td>
     </tr>
     </ng-template>
 </p-table>
 </div>
 <p-dialog
-    header="tituloDialogo"
+    [header]="tituloDialogo"
     [(visible)]="dialogoVisible"
     [modal]="true">
     <app-formulario-pedido #formulario (recargarPedidos)="cargarPedidos()"></app-formulario-pedido>

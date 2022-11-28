@@ -1,5 +1,5 @@
-<div class="field" >
-    <label for="idpedido">Pedido:</label>
+<div class="field">
+    <label for="idpedido">idPedido:</label>
     <p-inputNumber id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
     [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
 </p-inputNumber>
@@ -9,10 +9,11 @@
 <div class="field">
     <label for="idusuario">idUsuario:</label>
     <p-inputNumber id="idusuario" styleclass="w-full" class="w-full" [(ngModel)]="idusuario"
-    [ngClass]="{'ng-invalid' : !idusuarioValido, 'ng-dirty': !idusuarioValido}">
+    [ngClass]="{'ng-invalid': !idusuarioValido, 'ng-dirty': !idusuarioValido}">
     </p-inputNumber>
     <small *ngIf="!idusuarioValido" id="codigo-help" class="p-error block">Ingresar el idUsuario</small>
 </div>
+
 <div class="field">
     <label for="fechaPedido">Fecha del Pedido</label>
     <p-calendar id="fechaPedido" class="w-full" styleClass="w-full" [(ngModel)]="fechaPedido"

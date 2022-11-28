@@ -33,18 +33,16 @@ export class ProductosComponent implements OnInit {
 
   cargarProductos(): void{
     this.cargando = true;
-
     this.servicioProductos.get().subscribe({
       next: (datos) => {
         this.listaProductos = datos;
         this.cargando = false;
       },
       error: (e) => {
-        console.log("ocurrio un error de lectura del api");
         console.log(e);
         this.cargando = false;
-        this.mensajes = [{ severity: 'error', summary: 'Error al cargar productos', detail: e.message}]
-        console.log(this.mensajes);
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes = [{ severity: 'error', summary: 'Error al cargar productos', detail: mensaje}]
       }
     });
   }
@@ -71,6 +69,10 @@ export class ProductosComponent implements OnInit {
   eliminar(producto: Producto){
     this.servicioConfirm.confirm({
       message: "¿Realmente desea eliminar el producto: '" + producto.idproducto + "-" + producto.nombrePro + "-" + producto.precioPro + "-" + producto.cantidadPro + "-" + producto.produOferta + "-" + producto.marcaPro + "'?",
+      acceptLabel: 'Eliminar',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'pi pi-danger',
+      acceptIcon: 'pi pi-trash',
       accept: () => {
         this.servicioProductos.delete(producto).subscribe({
           next: () => {
@@ -79,7 +81,8 @@ export class ProductosComponent implements OnInit {
           },
           error: (e) => {
             console.log(e);
-            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: e.error }];
+            const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: mensaje }];
 
           }
         });

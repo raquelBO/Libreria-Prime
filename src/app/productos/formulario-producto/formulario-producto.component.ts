@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
+import { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
 import { Producto } from 'src/app/interface/producto.interface'; 
 import { ProductoService } from 'src/app/servicios/productos.service';
 
@@ -33,8 +34,6 @@ export class FormularioProductoComponent implements OnInit {
 
   @Output()
   recargarProductos: EventEmitter<boolean> = new EventEmitter();
-
-
 
   constructor(
     private servicioProductos: ProductoService,
@@ -85,7 +84,9 @@ export class FormularioProductoComponent implements OnInit {
       },
       error: (e) => {
         this.guardando = false;
-        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: e.error}];
+        console.log(e);
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: mensaje}];
       }
     });
   }
@@ -100,7 +101,8 @@ export class FormularioProductoComponent implements OnInit {
       error: (e) => {
         this.guardando = false;
         console.log(e);
-        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: e.error}];
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: mensaje}];
       }
     });
   }

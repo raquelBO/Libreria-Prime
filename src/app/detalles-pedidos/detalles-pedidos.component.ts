@@ -41,7 +41,8 @@ export class DetallesPedidoComponent implements OnInit {
       error: (e) => {
         console.log(e);
         this.cargando = false;
-        this.mensajes = [{severity: 'error', summary: 'Error al cargar detallesPedidos', detail: e.message}]
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes = [{severity: 'error', summary: 'Error al cargar detallesPedidos', detail: mensaje}]
       }
     });
   }
@@ -76,7 +77,8 @@ export class DetallesPedidoComponent implements OnInit {
           },
           error: (e) => {
             console.log(e);
-            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: e.error }];
+            const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: mensaje }];
           }
         });
       }

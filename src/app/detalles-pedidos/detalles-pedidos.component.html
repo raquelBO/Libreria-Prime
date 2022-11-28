@@ -3,7 +3,7 @@
     <button
     pButton
     label="Agregar"
-    icon="pi pi plus"
+    icon="pi pi-plus"
     (click)="nuevo">
 </button>
     </div>
@@ -17,24 +17,26 @@
         responsiveLayout="scroll">
     <ng-template pTemplate="header">
         <tr>
-            <th>Detalles Pedido</th>
-            <th>Producto</th>
+            <th>Id Detalles Pedido</th>
+            <th>Id Producto</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Pedido</th>
+            <th>Acciones</th>
+
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-detallesPedido>
         <tr>
             <td>{{ detallesPedido.iddetallesPedido }}</td>
-            <td>{{ detallesPedido.producto }}</td>
+            <td>{{ detallesPedido.idproducto }}</td>
             <td>{{ detallesPedido.cantidad }}</td>
             <td>{{ detallesPedido.precio }}</td>
             <td>{{ detallesPedido.idpedido }}</td>
 
             <td>
                 <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(detallesPedido)"></button>
-                <button pButton type="button" icon="pi pi-trash" class="p-button-danger" (click)="eliminar(detallesPedido)"></button>
+                <button pButton type="button" icon="pi pi-trash" class="p-button-danger" style="margin: 5px;" (click)="eliminar(detallesPedido)"></button>
             </td>
         </tr>
     </ng-template>

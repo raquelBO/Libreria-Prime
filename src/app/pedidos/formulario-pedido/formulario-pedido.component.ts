@@ -26,7 +26,6 @@ export class FormularioPedidoComponent implements OnInit {
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
   listaPedidos: Pedido[] = [];
-  listaDetallesPedido: DetallesPedido[] = [];
 
   @Output()
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
@@ -78,7 +77,9 @@ export class FormularioPedidoComponent implements OnInit {
       },
       error: (e) => {
         this.guardando = false;
-        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: e.error}];
+        console.log(e);
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al registrar', detail: mensaje}];
       }
     });
   }
@@ -93,7 +94,8 @@ export class FormularioPedidoComponent implements OnInit {
       error: (e) => {
         this.guardando = false;
         console.log(e);
-        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: e.error}];
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+        this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: mensaje}];
       }
     });
   }
@@ -105,15 +107,16 @@ export class FormularioPedidoComponent implements OnInit {
     return this.idpedidoValido && this.idusuarioValido && this.fechaEntregaValido && this.fechaPedidoValido;
   }
   limpiarFormulario(){
-     this.idpedidoValido = true;
+     this.idpedido = null;
+     this.idusuario = null;
+     this.fechaEntrega = null;
+     this.fechaPedido = null; 
+    
+    this.idpedidoValido = true;
      this.idusuarioValido = true;
      this.fechaEntregaValido = true;
      this.fechaPedidoValido = true;
 
-     this.idpedido = null;
-     this.idusuario = null;
-     this.fechaEntrega = null;
-     this.fechaPedido = null;
 
      this.mensajes = [];
   }

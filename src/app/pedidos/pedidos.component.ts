@@ -10,6 +10,7 @@ import { FormularioPedidoComponent } from './formulario-pedido/formulario-pedido
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent implements OnInit {
+
   @ViewChild('formulario') formPedido!: FormularioPedidoComponent;
   //Aqui se guarda la lista de pedidos
   listaPedidos: Pedido[] = [];
@@ -40,7 +41,8 @@ export class PedidosComponent implements OnInit {
       error: (e) => {
         console.log(e);
         this.cargando = false;
-        this.mensajes = [{ severity: 'error', summary: 'Error al cargar pedidos', detail: e.message }]
+        const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado':e.message;
+        this.mensajes = [{ severity: 'error', summary: 'Error al cargar pedidos', detail: mensaje }]
       }
     });
   }
@@ -53,7 +55,7 @@ export class PedidosComponent implements OnInit {
     this.dialogoVisible = true;
   }
 
-  editar(pedido: Pedido) {
+  editar(pedido: Pedido){
     this.formPedido.idpedido = pedido.idpedido;
     this.formPedido.idusuario = pedido.idusuario;
     this.formPedido.fechaEntrega = pedido.fechaEntrega;
@@ -65,16 +67,21 @@ export class PedidosComponent implements OnInit {
   }
   eliminar(pedido: Pedido) {
     this.servicioConfirm.confirm({
-      message: "¿Realmente desea eliminar el pedido: '" + pedido.idpedido + "-" + pedido.idusuario + '-' + pedido.fechaEntrega + '-' + pedido.fechaPedido + "'?",
+      message: "¿Realmente desea eliminar el pedido: '" + pedido.idpedido + "-" + pedido.idusuario + "-" + pedido.fechaEntrega + "-" + pedido.fechaPedido + "'?",
+      acceptLabel : 'Eliminar',
+      rejectLabel: 'Cancelar',
+      acceptButtonStyleClass: 'pi pi-danger',
+      acceptIcon: 'pi pi-trash',
       accept: () => {
         this.servicioPedidos.delete(pedido).subscribe({
           next: () => {
-            this.mensajes = [{ severity: 'success', summary: 'Exito', detail: 'Se elimino correctamente el pedido' }];
+            this.mensajes = [{ severity: 'success', summary: 'Exito', detail: 'Se elimino correctamente el pedido'}];
             this.cargarPedidos();
           },
           error: (e) => {
             console.log(e);
-            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: e.error }];
+            const mensaje: string = e.status === 403 || e.status === 401 ? 'No autorizado' : e.message;
+            this.mensajes = [{ severity: 'error', summary: 'Error al eliminar', detail: mensaje }];
           }
         });
       }

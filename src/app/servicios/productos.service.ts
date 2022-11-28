@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Producto } from '../interface/producto.interface';
 
@@ -14,16 +14,23 @@ export class ProductoService {
     ) { }
 
     get(): Observable<Producto[]>{
-        return this.http.get<Producto[]>(this.url);
+        return this.http.get<Producto[]>(this.url, { headers: this.ObtenerCabeceras()});
     }
     post(producto: Producto): Observable<any>{
-        return this.http.post(this.url, producto, { responseType: 'text' });
+        return this.http.post(this.url, producto, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
     }
     put(producto: Producto): Observable<any>{
-        return this.http.put(`${this.url}`, producto, { responseType: 'text' });
+        return this.http.put(`${this.url}`, producto, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
     }
     delete(producto: Producto): Observable<any>{
-        return this.http.delete(`${this.url}-${producto.idproducto}`, { responseType: 'text' });
+        return this.http.delete(`${this.url}-${producto.idproducto}`, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
     }
+    private ObtenerCabeceras(contentType?: string): HttpHeaders{
+        let cabeceras: HttpHeaders = new HttpHeaders();
+        if(contentType) cabeceras = cabeceras.append('Content-type', contentType);
+        const token: string | null = localStorage.getItem('token');
+        if(token) cabeceras = cabeceras.append('Authorization', 'Bearer '+token);
+        return cabeceras;
+       } 
 
 }

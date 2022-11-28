@@ -27,8 +27,10 @@ import { DetallesPedidoComponent } from './detalles-pedidos/detalles-pedidos.com
 import { FormularioDetallesPedidoComponent } from './detalles-pedidos/formulario-detalle-pedido/formulario-detalle-pedido.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { FormularioUsuarioComponent } from './usuario/formulario-usuario/formulario-usuario.component';
+import { PasswordModule } from 'primeng/password';
 import { SesionGuard } from './guards/sesion.guard';
 import { CalendarModule } from 'primeng/calendar';
+import {DockModule} from 'primeng/dock';
 
 @NgModule({
   declarations: [
@@ -62,8 +64,9 @@ import { CalendarModule } from 'primeng/calendar';
     ConfirmDialogModule,
     DropdownModule,
     ReactiveFormsModule,
-    CalendarModule
-
+    CalendarModule,
+    PasswordModule,
+    DockModule
   ],
   providers: [ConfirmationService, SesionGuard],
   bootstrap: [AppComponent]

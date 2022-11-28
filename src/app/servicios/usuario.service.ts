@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from '../interface/usuario.interface';
 
@@ -15,16 +15,24 @@ export class UsuarioService {
   ) { }
 
   get(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.url);
+    return this.http.get<Usuario[]>(this.url, { headers: this.ObtenerCabeceras()});
   }
   post(usuario: Usuario): Observable<any>{
-    return this.http.post(this.url, usuario, { responseType: 'text' });
+    return this.http.post(this.url, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
   }
   put(usuario: Usuario): Observable<any>{
-    return this.http.put(`${this.url}`, usuario, { responseType: 'text' });
+    return this.http.put(`${this.url}`, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
   }
   delete(usuario : Usuario): Observable<any>{
-    return this.http.delete(`${this.url}-${usuario.idusuario}`, { responseType: 'text' });
+    return this.http.delete(`${this.url}-${usuario.idusuario}`, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
   }
+  private ObtenerCabeceras(contentType?: string): HttpHeaders{
+    let cabeceras: HttpHeaders = new HttpHeaders();
+    if(contentType) cabeceras = cabeceras.append('Content-type', contentType);
+    const token: string | null = localStorage.getItem('token');
+    if(token) cabeceras = cabeceras.append('Authorization', 'Bearer '+token);
+    return cabeceras;
+   } 
+
 
 }
