@@ -26,6 +26,7 @@
             <th>Digito Ruc</th>
             <th>Correo</th>
             <th>Password</th>
+            <th>Idtipo</th>
             <th>Acciones</th>
         </tr>
     </ng-template>
@@ -40,6 +41,7 @@
             <td>{{ usuario.digitoRuc}}</td>
             <td>{{ usuario.correo }}</td>
             <td>{{ usuario.password }}</td>
+            <td>{{ usuario.idtipo }}</td>
 
             <td>
                 <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(usuario)"></button>

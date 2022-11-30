@@ -19,6 +19,7 @@ export class FormularioUsuarioComponent implements OnInit {
    digitoRuc : number | null = null;
    correo: string | null = null;
    password: string | null = null;
+   idtipo: number | null = null;
 
    idusuarioValido: boolean = true;
    nombreValido: boolean = true;
@@ -29,6 +30,7 @@ export class FormularioUsuarioComponent implements OnInit {
    digitoRucValido: boolean = true;
    correoValido: boolean = true;
    passwordValido: boolean = true;
+   idtipoValido: boolean = true;
 
    guardando: boolean = false;
    mensajes: Message[] = [];
@@ -68,7 +70,8 @@ export class FormularioUsuarioComponent implements OnInit {
       && this.ciValido
       && this.digitoRucValido
       && this.correoValido
-      && this.passwordValido){
+      && this.passwordValido 
+      && this.idtipoValido){
         const usuario : Usuario = {
           idusuario: this.idusuario,
           nombre: this.nombre,
@@ -78,7 +81,8 @@ export class FormularioUsuarioComponent implements OnInit {
           ci: this.ci,
           digitoRuc: this.digitoRuc,
           correo: this.correo,
-          password: this.password
+          password: this.password,
+          idtipo: this.idtipo
         }
         if(this.modo === 'Registrar'){
           this.registrar(usuario);
@@ -131,7 +135,8 @@ export class FormularioUsuarioComponent implements OnInit {
       this.digitoRucValido = this.digitoRucValido !== null;
       this.correoValido = this.correo !== null!
       this.passwordValido = this.password !== null;
-      return this.idusuarioValido && this.nombreValido && this.apellidoValido && this.direccionValido && this.telefonoValido && this.ciValido && this.digitoRucValido && this.correoValido && this.passwordValido;
+      this.idtipoValido = this.idtipo !== null;
+      return this.idusuarioValido && this.nombreValido && this.apellidoValido && this.direccionValido && this.telefonoValido && this.ciValido && this.digitoRucValido && this.correoValido && this.passwordValido && this.idtipoValido;
     }
     limpiarFormulario(){
       this.idusuario = null;
@@ -143,6 +148,7 @@ export class FormularioUsuarioComponent implements OnInit {
       this.digitoRuc = null;
       this.correo = null;
       this.password = null;
+      this.idtipo = null;
 
       this.idusuarioValido = true;
       this.nombreValido = true;
@@ -153,6 +159,7 @@ export class FormularioUsuarioComponent implements OnInit {
       this.digitoRucValido = true;
       this.correoValido = true;
       this.passwordValido = true;
+      this.idtipoValido = true;
 
       this.mensajes = [];
     }

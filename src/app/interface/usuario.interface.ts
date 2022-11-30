@@ -8,4 +8,5 @@ export interface Usuario{
     digitoRuc: number | null;
     correo:    string | null;
     password:     string | null;
+    idtipo: number | null;
 }

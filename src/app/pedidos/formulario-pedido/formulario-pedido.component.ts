@@ -68,12 +68,14 @@ export class FormularioPedidoComponent implements OnInit {
   }
 
   private registrar(pedido: Pedido){
+    console.log(pedido);
     this.guardando = true;
     this.servicioPedidos.post(pedido).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se registro el pedido'}];
         this.recargarPedidos.emit(true);
+        
       },
       error: (e) => {
         this.guardando = false;
@@ -90,6 +92,7 @@ export class FormularioPedidoComponent implements OnInit {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se edito el pedido'}];
         this.recargarPedidos.emit(true);
+        console.log( 'Se edito el pedido' );
       },
       error: (e) => {
         this.guardando = false;

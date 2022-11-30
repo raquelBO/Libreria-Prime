@@ -18,13 +18,13 @@ export class DetallesPedidoService {
     return this.http.get<DetallesPedido[]>(this.url, { headers: this.ObtenerCabeceras()});
   }
   post(detallesPedido: DetallesPedido): Observable<any>{
-    return this.http.post(this.url, detallesPedido, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.post(this.url, detallesPedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
   }
   put(detallesPedido: DetallesPedido): Observable<any>{
-    return this.http.put(`${this.url}`, detallesPedido, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.put(`${this.url}`, detallesPedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
   }
   delete(detallesPedido : DetallesPedido): Observable<any>{
-    return this.http.delete(`${this.url}-${detallesPedido.iddetallesPedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.delete(`${this.url}-${detallesPedido.iddetallesPedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
   }
   private ObtenerCabeceras(contentType?: string): HttpHeaders{
     let cabeceras: HttpHeaders = new HttpHeaders();

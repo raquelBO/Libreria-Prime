@@ -18,13 +18,13 @@ export class PedidoService {
         return this.http.get<Pedido[]>(this.url, { headers: this.ObtenerCabeceras()});
     }
     post(pedido: Pedido): Observable<any>{
-        return this.http.post(this.url, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+        return this.http.post(this.url, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     put(pedido: Pedido): Observable<any>{
-        return this.http.put(`${this.url}`, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+        return this.http.put(`${this.url}`, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     delete(pedido: Pedido): Observable<any>{
-        return this.http.delete(`${this.url}-${pedido.idpedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('aplication/json') });
+        return this.http.delete(`${this.url}-${pedido.idpedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     private ObtenerCabeceras(contentType?: string): HttpHeaders{
         let cabeceras: HttpHeaders = new HttpHeaders();

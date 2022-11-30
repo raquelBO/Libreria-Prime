@@ -57,6 +57,13 @@
     [ngClass]="{'ng-invalid': !passwordValido, 'ng-dirty': !passwordValido} ">
     <small *ngIf="!passwordValido" id="codigo-help" class="p-error block">Ingresar el password</small>
 </div>
+<div class="field">
+    <label for="idtipo">Id tipo</label>
+    <p-inputNumber id="idtipo" styleClass="w-full" class="w-full"[(ngModel)]="idtipo"
+    [ngClass]="{'ng-invalid' : !idtipoValido, 'ng-dirty': !idtipoValido}">
+</p-inputNumber>
+    <small *ngIf="!idtipoValido" id="codigo-help" class="p-error block">Ingrese el tipo de usuario</small>
+</div>
 
 <div class="field">
     <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>

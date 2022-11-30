@@ -18,13 +18,13 @@ export class UsuarioService {
     return this.http.get<Usuario[]>(this.url, { headers: this.ObtenerCabeceras()});
   }
   post(usuario: Usuario): Observable<any>{
-    return this.http.post(this.url, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.post(this.url, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('application/json') });
   }
   put(usuario: Usuario): Observable<any>{
-    return this.http.put(`${this.url}`, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.put(`${this.url}`, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('application/json') });
   }
   delete(usuario : Usuario): Observable<any>{
-    return this.http.delete(`${this.url}-${usuario.idusuario}`, { responseType: 'text' , headers: this.ObtenerCabeceras('aplication/json') });
+    return this.http.delete(`${this.url}-${usuario.idusuario}`, { responseType: 'text' , headers: this.ObtenerCabeceras('application/json') });
   }
   private ObtenerCabeceras(contentType?: string): HttpHeaders{
     let cabeceras: HttpHeaders = new HttpHeaders();
