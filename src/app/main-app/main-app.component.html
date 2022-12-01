@@ -1,5 +1,5 @@
 <div class="fondo">
-    <p-dock [model]="dockItems" position="bottom">
+    <p-dock [model]="dockItems" position="left">
         <ng-template pTemplate="item" let-item> 
             <img [src]="item.icon" [alt]="item.label" width="100%">
         </ng-template>
@@ -8,4 +8,3 @@
         <router-outlet></router-outlet>   
     </div>
 </div>
-

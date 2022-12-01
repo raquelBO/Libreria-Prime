@@ -7,6 +7,6 @@ export interface Usuario{
     ci:        number | null;
     digitoRuc: number | null;
     correo:    string | null;
-    password:     string | null;
-    idtipo: number | null;
+    password:  string | null;
+    idtipo:    number | null;
 }
