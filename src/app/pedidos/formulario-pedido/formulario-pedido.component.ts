@@ -2,7 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { Pedido } from 'src/app/interface/pedido.interface';
 import { PedidoService } from 'src/app/servicios/pedidos.service';
-import  { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
+import { Usuario } from 'src/app/interface/usuario.interface';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-formulario-pedido',
@@ -26,16 +27,32 @@ export class FormularioPedidoComponent implements OnInit {
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
   listaPedidos: Pedido[] = [];
+  listaUsuarios: Usuario[] = [];
 
   @Output()
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private servicioPedidos: PedidoService,
+    private servicioUsuarios: UsuarioService
   ) { }
 
   ngOnInit(): void {
     this.cargarPedidos();
+    this.cargarUsuarios();
+  }
+
+  cargarUsuarios() {
+    this.servicioUsuarios.get().subscribe({
+      next: (usuarios) =>{
+        this.listaUsuarios = usuarios;
+      },
+      error: (e) => {
+        console.log('Error al cargar usuarios');
+        console.log(e);
+        this.mensajes = [{severity:'error', summary: 'Error al cargar usuarios', detail: e.error}];
+      }
+    });
   }
 
   cargarPedidos(){
