@@ -1,38 +1,38 @@
 <div class="field">
      <label for="iddetallesPedido">Detalles Pedido</label>
      <p-inputNumber id="iddetallesPedido" styleClass="w-full" class="w-full" [(ngModel)]="iddetallesPedido"
-     [ngClass]="{'ng-invalid': !iddetallesPedido, 'ng-dirty': !iddetallesPedido}">
+     [ngClass]="{'ng-invalid': !iddetallesPedidoValido, 'ng-dirty': !iddetallesPedidoValido}">
      </p-inputNumber>
-     <small *ngIf="!iddetallesPedido" id="codigo-help" class="p-error block">Ingresar el detalle de pedido</small>
+     <small *ngIf="!iddetallesPedidoValido" id="codigo-help" class="p-error block">Ingresar el detalle de pedido</small>
 
     </div>
 
     <div class="field">
         <label for="idproducto">Producto</label>
         <input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto" pInputText
-        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproducto}">
-        <small *ngIf="!idproducto" id="codigo-help" class="p-error block">Ingresar el idproducto</small>
+        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">
+        <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block">Ingresar el idproducto</small>
     </div>
 
     <div class="field">
         <label for="!cantidad">Cantidad</label>
         <input id="cantidad" type="number" class="w-full" [(ngModel)]="cantidad" pInputText
-        [ngClass]="{'ng invalid' : !cantidad, 'ng-dirty': !cantidad}">
-        <small *ngIf="!cantidad" id="codigo-help" class="p-error block">Ingresar la cantidad</small>
+        [ngClass]="{'ng invalid' : !cantidadValido, 'ng-dirty': !cantidadValido}">
+        <small *ngIf="!cantidadValido" id="codigo-help" class="p-error block">Ingresar la cantidad</small>
     </div>
 
     <div class="field">
-        <label for="!pecio">Precio</label>
-        <p-inputNumber id="precio" class="w-full" mode="currency" currency="PYG" locale="es-PY" [(ngModel)]="precio"
-        [ngClass]="{'ng invalid' : !precio, 'ng-dirty': !precio}" ></p-inputNumber>
-        <small *ngIf="!precio" id="codigo-help" class="p-error block">Ingresar la precio</small>
+        <label for="!precio">Precio</label>
+        <p-inputNumber id="precio" class="w-full" styleClass="w-full" mode="currency" currency="PYG" locale="es-PY" [(ngModel)]="precio"
+        [ngClass]="{'ng invalid' : !precioValido, 'ng-dirty': !precioValido}" ></p-inputNumber>
+        <small *ngIf="!precioValido" id="codigo-help" class="p-error block">Ingresar la precio</small>
     </div>
 
     <div class="field">
         <label for="!idpedido">Pedido</label>
         <input id="idpedido" type="number" class="w-full" [(ngModel)]="idpedido" pInputText
-        [ngClass]="{'ng invalid' : !idpedido, 'ng-dirty': !idpedido}">
-        <small *ngIf="!idpedido" id="codigo-help" class="p-error block">Ingresar el pedido</small>
+        [ngClass]="{'ng invalid' : !idpedidoValido, 'ng-dirty': !idpedidoValido}">
+        <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el pedido</small>
     </div>
 
     <div class="field">

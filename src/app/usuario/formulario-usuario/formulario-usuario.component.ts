@@ -14,7 +14,7 @@ export class FormularioUsuarioComponent implements OnInit {
    nombre: string | null = null;
    apellido: string | null = null;
    direccion: string | null = null;
-   telefono: number | null = null;
+   telefono: string | null = null;
    ci: number | null = null;
    digitoRuc : number | null = null;
    correo: string | null = null;

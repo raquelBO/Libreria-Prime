@@ -25,7 +25,6 @@
             <th>Ci</th>
             <th>Digito Ruc</th>
             <th>Correo</th>
-            <th>Password</th>
             <th>Idtipo</th>
             <th>Acciones</th>
         </tr>
@@ -40,12 +39,11 @@
             <td>{{ usuario.ci }}</td>
             <td>{{ usuario.digitoRuc}}</td>
             <td>{{ usuario.correo }}</td>
-            <td>{{ usuario.password }}</td>
             <td>{{ usuario.idtipo }}</td>
 
             <td>
-                <button pButton type="button" icon="pi pi-pencil" style="margin:5px;" (click)="editar(usuario)"></button>
-                <button pButton type="button" icon="pi pi-trash" class="p-button-danger" (click)="eliminar(usuario)"></button>
+                <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;" (click)="editar(usuario)"></button>
+                <button pButton type="button" icon="pi pi-trash" class="p-button-danger" style="margin: 5px;" (click)="eliminar(usuario)"></button>
             </td>
         </tr>
     </ng-template>

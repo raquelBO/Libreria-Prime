@@ -76,6 +76,7 @@ export class FormularioPedidoComponent implements OnInit {
         fechaEntrega: this.fechaEntrega,
         fechaPedido: this.fechaEntrega
       }
+      console.log(pedido);
       if(this.modo === 'Registrar'){
         this.registrar(pedido);
       }else{

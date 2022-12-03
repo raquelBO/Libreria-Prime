@@ -3,7 +3,7 @@ export interface Usuario{
     nombre:    string | null;
     apellido:  string | null;
     direccion: string | null;
-    telefono:  number | null;
+    telefono:  string | null;
     ci:        number | null;
     digitoRuc: number | null;
     correo:    string | null;
