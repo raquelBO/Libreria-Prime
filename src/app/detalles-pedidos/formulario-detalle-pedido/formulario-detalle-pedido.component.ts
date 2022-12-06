@@ -2,6 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
 import { DetallesPedidoService } from 'src/app/servicios/detallesPedidos.service';
+import { Producto } from 'src/app/interface/producto.interface';
+import { ProductoService } from 'src/app/servicios/productos.service';
 
 
 @Component({
@@ -27,25 +29,40 @@ export class FormularioDetallesPedidoComponent implements OnInit {
   mensajes: Message[] = [];
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
-  listaDetallesPedido: DetallesPedido[] = [];
+  listaDetallesPedidos: DetallesPedido[] = [];
+  listaProductos: Producto[] = [];
 
   @Output()
-  recargarDetallesPedido: EventEmitter<boolean> = new EventEmitter();
+  recargarDetallesPedidos: EventEmitter<boolean> = new EventEmitter();
 
 
 
   constructor(
     private servicioDetallesPedido: DetallesPedidoService,
+    private servicioProducto: ProductoService
   ) { }
 
   ngOnInit(): void {
-    this.cargarDetallesPedido();
+    this.cargarDetallesPedidos();
+    this.cargarProductos();
+  }
+  cargarProductos() {
+    this.servicioProducto.get().subscribe({
+      next: (productos) => {
+        this.listaProductos = productos;
+      },
+      error: (e) => {
+        console.log('Error al cargar productos');
+        console.log(e);
+        this.mensajes = [{severity:'Error', summary:'Error al cargar Productos', detail: e.error}];
+      }
+    });
   }
 
-  cargarDetallesPedido(){
+  cargarDetallesPedidos(){
     this.servicioDetallesPedido.get().subscribe({
       next: (detallesPedido) => {
-        this.listaDetallesPedido = detallesPedido;
+        this.listaDetallesPedidos = detallesPedido;
       },
       error: (e) => {
         console.log('Error al cargar detallesPedido');
@@ -78,7 +95,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se registro el detallesPedido'}];
-        this.recargarDetallesPedido.emit(true);
+        this.recargarDetallesPedidos.emit(true);
       },
       error: (e) => {
         this.guardando = false;
@@ -94,7 +111,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el detallePedido'}];
-        this.recargarDetallesPedido.emit(true);
+        this.recargarDetallesPedidos.emit(true);
       },
       error: (e) => {
         this.guardando = false;

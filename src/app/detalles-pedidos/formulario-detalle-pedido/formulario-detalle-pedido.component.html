@@ -9,9 +9,22 @@
 
     <div class="field">
         <label for="idproducto">Producto</label>
-        <input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto" pInputText
-        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">
-        <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block">Ingresar el idproducto</small>
+    
+          <p-dropdown 
+                   id="idproducto"
+                   styleClass="w-full" 
+                   class="w-full"   
+                   [options]="listaProductos" 
+                   [(ngModel)]="idproducto" 
+                   optionLabel="nombre" 
+                   optionValue="idproducto"
+                   placeholder="Seleccionar..."
+                   [showClear]="true" >
+                </p-dropdown>
+    
+        <!--input id="idproducto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
+        [ngClass]="{'ng-invalid': !idproducto, 'ng-dirty': !idproductoValido}">-->
+        <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block"> Ingresar Producto</small>
     </div>
 
     <div class="field">

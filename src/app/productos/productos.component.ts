@@ -23,7 +23,7 @@ export class ProductosComponent implements OnInit {
   tituloDialogo: string = 'Registrar Producto';
 
   constructor(
-    private servicioProductos: ProductoService,
+    private servicioProducto: ProductoService,
     private servicioConfirm: ConfirmationService
   ) { }
 
@@ -33,7 +33,7 @@ export class ProductosComponent implements OnInit {
 
   cargarProductos(): void{
     this.cargando = true;
-    this.servicioProductos.get().subscribe({
+    this.servicioProducto.get().subscribe({
       next: (datos) => {
         this.listaProductos = datos;
         this.cargando = false;
@@ -74,7 +74,7 @@ export class ProductosComponent implements OnInit {
       acceptButtonStyleClass: 'pi pi-danger',
       acceptIcon: 'pi pi-trash',
       accept: () => {
-        this.servicioProductos.delete(producto).subscribe({
+        this.servicioProducto.delete(producto).subscribe({
           next: () => {
             this.mensajes = [{ severity: 'success', summary: 'Exito', detail: 'Se elimno correctamente el producto'}];
             this.cargarProductos();

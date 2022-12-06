@@ -51,7 +51,7 @@ export class DetallesPedidoComponent implements OnInit {
     this.tituloDialogo = 'Registrar DetallesPedido';
     this.formDetallesPedido.limpiarFormulario();
     this.formDetallesPedido.modo = 'Registrar';
-    this.formDetallesPedido.cargarDetallesPedido();
+    this.formDetallesPedido.cargarDetallesPedidos();
     this.dialogoVisible = true;
 
   }
@@ -62,7 +62,7 @@ export class DetallesPedidoComponent implements OnInit {
     this.formDetallesPedido.cantidad = detallesPedido.cantidad;
     this.formDetallesPedido.precio = detallesPedido.precio;
     this.formDetallesPedido.idpedido = detallesPedido.idpedido;
-    this.formDetallesPedido.cargarDetallesPedido();
+    this.formDetallesPedido.cargarDetallesPedidos();
     this.dialogoVisible = true;
     this.tituloDialogo = "Editar DetallesPedido";
   }

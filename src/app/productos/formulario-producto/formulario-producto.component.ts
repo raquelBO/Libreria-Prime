@@ -30,13 +30,13 @@ export class FormularioProductoComponent implements OnInit {
   mensajes: Message[] = [];
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
-  listaProductos: Producto[] = [];
+  listaProducto: Producto[] = [];
 
   @Output()
   recargarProductos: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
-    private servicioProductos: ProductoService,
+    private servicioProducto: ProductoService,
   ) { }
 
   ngOnInit(): void {
@@ -44,9 +44,9 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   cargarProductos(){
-    this.servicioProductos.get().subscribe({
+    this.servicioProducto.get().subscribe({
       next: (productos) => {
-        this.listaProductos = productos;
+        this.listaProducto = productos;
       },
       error: (e) => {
         console.log('Error al cargar producto');
@@ -76,7 +76,7 @@ export class FormularioProductoComponent implements OnInit {
 
   private registrar(producto: Producto){
     this.guardando = true;
-    this.servicioProductos.post(producto).subscribe({
+    this.servicioProducto.post(producto).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se registro el producto'}];
@@ -92,7 +92,7 @@ export class FormularioProductoComponent implements OnInit {
   }
   private editar(producto: Producto){
     this.guardando = true;
-    this.servicioProductos.put(producto).subscribe({
+    this.servicioProducto.put(producto).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el producto'}];
