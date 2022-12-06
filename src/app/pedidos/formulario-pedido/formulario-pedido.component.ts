@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { Pedido } from 'src/app/interface/pedido.interface';
-import { PedidoService } from 'src/app/servicios/pedidos.service';
+import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { Usuario } from 'src/app/interface/usuario.interface';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -14,8 +14,8 @@ export class FormularioPedidoComponent implements OnInit {
 
   idpedido: number | null = null;
   idusuario: number | null = null;
-  fechaPedido: Date | null = null;
-  fechaEntrega: Date | null = null;
+  fechaPedido: string | null = null;
+  fechaEntrega: string | null = null;
 
   idpedidoValido: boolean = true;
   idusuarioValido: boolean = true;
@@ -33,7 +33,7 @@ export class FormularioPedidoComponent implements OnInit {
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
-    private servicioPedidos: PedidoService,
+    private servicioPedidos: PedidosService,
     private servicioUsuarios: UsuarioService
   ) { }
 

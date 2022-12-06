@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, Message } from 'primeng/api';
 import { Producto } from '../interface/producto.interface';
-import { ProductoService } from '../servicios/productos.service';
+import { ProductosService } from '../servicios/productos.service';
 import { FormularioProductoComponent } from './formulario-producto/formulario-producto.component';
 
 @Component({
@@ -23,7 +23,7 @@ export class ProductosComponent implements OnInit {
   tituloDialogo: string = 'Registrar Producto';
 
   constructor(
-    private servicioProducto: ProductoService,
+    private servicioProductos: ProductosService,
     private servicioConfirm: ConfirmationService
   ) { }
 
@@ -33,7 +33,7 @@ export class ProductosComponent implements OnInit {
 
   cargarProductos(): void{
     this.cargando = true;
-    this.servicioProducto.get().subscribe({
+    this.servicioProductos.get().subscribe({
       next: (datos) => {
         this.listaProductos = datos;
         this.cargando = false;
@@ -74,7 +74,7 @@ export class ProductosComponent implements OnInit {
       acceptButtonStyleClass: 'pi pi-danger',
       acceptIcon: 'pi pi-trash',
       accept: () => {
-        this.servicioProducto.delete(producto).subscribe({
+        this.servicioProductos.delete(producto).subscribe({
           next: () => {
             this.mensajes = [{ severity: 'success', summary: 'Exito', detail: 'Se elimno correctamente el producto'}];
             this.cargarProductos();

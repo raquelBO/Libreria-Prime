@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, Message } from 'primeng/api';
 import { DetallesPedido } from '../interface/detallesPedido.interface';
-import { DetallesPedidoService } from '../servicios/detallesPedidos.service';
+import { DetallesPedidosService } from '../servicios/detallesPedidos.service';
 import { FormularioDetallesPedidoComponent } from './formulario-detalle-pedido/formulario-detalle-pedido.component';
 @Component({
   selector: 'app-detalles-pedidos',
@@ -22,7 +22,7 @@ export class DetallesPedidoComponent implements OnInit {
   tituloDialogo: string = 'Registrar detallesPedido';
 
   constructor(
-    private servicioDetallesPedidos: DetallesPedidoService,
+    private servicioDetallesPedidos: DetallesPedidosService,
     private servicioConfirm: ConfirmationService
 
   ) { }

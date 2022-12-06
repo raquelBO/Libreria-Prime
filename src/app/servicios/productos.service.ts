@@ -6,7 +6,7 @@ import { Producto } from '../interface/producto.interface';
 @Injectable({
     providedIn: 'root'
 })
-export class ProductoService {
+export class ProductosService {
     url: string = 'http://localhost:3000/producto';
 
     constructor(

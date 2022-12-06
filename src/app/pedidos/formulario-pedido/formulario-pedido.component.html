@@ -28,17 +28,15 @@
 
 <div class="field">
     <label for="fechaPedido">Fecha del Pedido</label>
-    <p-calendar id="fechaPedido" class="w-full" styleClass="w-full" [(ngModel)]="fechaPedido"
+    <input id="fechaPedido" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaPedido" pInputText
     [ngClass]="{'ng-invalid': !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}" appendTo="body">
-    </p-calendar>
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Fecha del Pedido</small>
 
 </div>
 <div class="field">
     <label for="fechaEntrega">Fecha de Entrega</label>
-    <p-calendar id="fechaEntrega" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaEntrega"
+    <input id="fechaEntrega" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaEntrega" pInputText
     [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}" appendTo="body">
-    </p-calendar>
     <small *ngIf="!fechaEntregaValido" id="codigo-help" class="p-error block">Fecha de Entrega</small>
  
 </div>

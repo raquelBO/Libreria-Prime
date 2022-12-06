@@ -6,27 +6,12 @@
      <small *ngIf="!iddetallesPedidoValido" id="codigo-help" class="p-error block">Ingresar el detalle de pedido</small>
 
     </div>
-
     <div class="field">
-        <label for="idproducto">Producto</label>
-    
-          <p-dropdown 
-                   id="idproducto"
-                   styleClass="w-full" 
-                   class="w-full"   
-                   [options]="listaProductos" 
-                   [(ngModel)]="idproducto" 
-                   optionLabel="nombre" 
-                   optionValue="idproducto"
-                   placeholder="Seleccionar..."
-                   [showClear]="true" >
-                </p-dropdown>
-    
-        <!--input id="idproducto" type="text" class="w-full" [(ngModel)]="idproducto"pInputText
-        [ngClass]="{'ng-invalid': !idproducto, 'ng-dirty': !idproductoValido}">-->
-        <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block"> Ingresar Producto</small>
+        <label for="!idproducto">Id Producto</label>
+        <input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto" pInputText
+        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">
+        <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block">Ingrese el Id producto</small>
     </div>
-
     <div class="field">
         <label for="!cantidad">Cantidad</label>
         <input id="cantidad" type="number" class="w-full" [(ngModel)]="cantidad" pInputText
@@ -36,7 +21,7 @@
 
     <div class="field">
         <label for="!precio">Precio</label>
-        <p-inputNumber id="precio" class="w-full" styleClass="w-full" mode="currency" currency="PYG" locale="es-PY" [(ngModel)]="precio"
+        <p-inputNumber id="precio" class="w-full" styleClass="w-full" [(ngModel)]="precio"
         [ngClass]="{'ng invalid' : !precioValido, 'ng-dirty': !precioValido}" ></p-inputNumber>
         <small *ngIf="!precioValido" id="codigo-help" class="p-error block">Ingresar la precio</small>
     </div>

@@ -28,8 +28,8 @@
         <tr>
             <td>{{ pedido.idpedido }} </td>
             <td>{{ pedido.idusuario }} </td>
-            <td>{{ pedido.fechaPedido | date: 'dd/mm/yy' }} </td>
-            <td>{{ pedido.fechaEntrega | date: 'dd/mm/yy' }} </td>
+            <td>{{ pedido.fechaPedido }} </td>
+            <td>{{ pedido.fechaEntrega }} </td>
             <td>
                 <button pButton type="button" icon="pi pi-pencil" style="margin: 5px;"
                     (click)="editar(pedido)"></button>

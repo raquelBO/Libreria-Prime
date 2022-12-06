@@ -6,7 +6,7 @@ import { Pedido } from '../interface/pedido.interface';
 @Injectable({
     providedIn: 'root'
 })
-export class PedidoService {
+export class PedidosService {
     
     url: string = 'http://localhost:3000/pedido';
 

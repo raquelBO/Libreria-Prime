@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem, PrimeIcons } from 'primeng/api';
-import { PedidoService } from '../servicios/pedidos.service';
+import { PedidosService } from '../servicios/pedidos.service';
 
 @Component({
   selector: 'app-main-app',

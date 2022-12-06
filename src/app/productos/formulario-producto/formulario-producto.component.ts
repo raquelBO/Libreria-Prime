@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
 import { Producto } from 'src/app/interface/producto.interface'; 
-import { ProductoService } from 'src/app/servicios/productos.service';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 
 @Component({
@@ -30,13 +30,13 @@ export class FormularioProductoComponent implements OnInit {
   mensajes: Message[] = [];
 
   modo: 'Registrar' | 'Editar' = 'Registrar';
-  listaProducto: Producto[] = [];
+  listaProductos: Producto[] = [];
 
   @Output()
   recargarProductos: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
-    private servicioProducto: ProductoService,
+    private servicioProductos: ProductosService,
   ) { }
 
   ngOnInit(): void {
@@ -44,14 +44,14 @@ export class FormularioProductoComponent implements OnInit {
   }
 
   cargarProductos(){
-    this.servicioProducto.get().subscribe({
+    this.servicioProductos.get().subscribe({
       next: (productos) => {
-        this.listaProducto = productos;
+        this.listaProductos = productos;
       },
       error: (e) => {
         console.log('Error al cargar producto');
         console.log(e);
-        this.mensajes = [{severity: 'Error', summary: 'Error al cargar producto', detail: e.error}];
+        this.mensajes = [{severity: 'Error', summary: 'Error al cargar productos', detail: e.error}];
       }
     });
   }
@@ -76,7 +76,7 @@ export class FormularioProductoComponent implements OnInit {
 
   private registrar(producto: Producto){
     this.guardando = true;
-    this.servicioProducto.post(producto).subscribe({
+    this.servicioProductos.post(producto).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se registro el producto'}];
@@ -92,7 +92,7 @@ export class FormularioProductoComponent implements OnInit {
   }
   private editar(producto: Producto){
     this.guardando = true;
-    this.servicioProducto.put(producto).subscribe({
+    this.servicioProductos.put(producto).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el producto'}];

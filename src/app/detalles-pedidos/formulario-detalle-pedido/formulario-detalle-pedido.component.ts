@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
-import { DetallesPedidoService } from 'src/app/servicios/detallesPedidos.service';
+import { DetallesPedidosService } from 'src/app/servicios/detallesPedidos.service';
 import { Producto } from 'src/app/interface/producto.interface';
-import { ProductoService } from 'src/app/servicios/productos.service';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 
 @Component({
@@ -38,8 +38,8 @@ export class FormularioDetallesPedidoComponent implements OnInit {
 
 
   constructor(
-    private servicioDetallesPedido: DetallesPedidoService,
-    private servicioProducto: ProductoService
+    private servicioDetallesPedidos: DetallesPedidosService,
+    private servicioProductos: ProductosService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
     this.cargarProductos();
   }
   cargarProductos() {
-    this.servicioProducto.get().subscribe({
+    this.servicioProductos.get().subscribe({
       next: (productos) => {
         this.listaProductos = productos;
       },
@@ -60,7 +60,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
   }
 
   cargarDetallesPedidos(){
-    this.servicioDetallesPedido.get().subscribe({
+    this.servicioDetallesPedidos.get().subscribe({
       next: (detallesPedido) => {
         this.listaDetallesPedidos = detallesPedido;
       },
@@ -81,6 +81,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
         precio: this.precio,
         idpedido: this.idpedido
       }
+      console.log(detallesPedido);
       if(this.modo === 'Registrar'){
         this.registrar(detallesPedido);
       }else{
@@ -91,7 +92,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
 
   private registrar(detallesPedido: DetallesPedido){
     this.guardando = true;
-    this.servicioDetallesPedido.post(detallesPedido).subscribe({
+    this.servicioDetallesPedidos.post(detallesPedido).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se registro el detallesPedido'}];
@@ -107,7 +108,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
   }
   private editar(detallesPedido: DetallesPedido){
     this.guardando = true;
-    this.servicioDetallesPedido.put(detallesPedido).subscribe({
+    this.servicioDetallesPedidos.put(detallesPedido).subscribe({
       next: () => {
         this.guardando = false;
         this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el detallePedido'}];

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConfirmationService, Message } from 'primeng/api';
 import { Pedido } from '../interface/pedido.interface';
-import { PedidoService } from '../servicios/pedidos.service';
+import { PedidosService } from '../servicios/pedidos.service';
 import { FormularioPedidoComponent } from './formulario-pedido/formulario-pedido.component';
 
 @Component({
@@ -23,7 +23,7 @@ export class PedidosComponent implements OnInit {
   tituloDialogo: string = 'Registrar Pedido';
 
   constructor(
-    private servicioPedidos: PedidoService,
+    private servicioPedidos: PedidosService,
     private servicioConfirm: ConfirmationService
   ) { }
 
