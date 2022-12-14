@@ -1,13 +1,14 @@
 <div class="field">
-    <label for="idpedido">idPedido:</label>
+    <label for="idpedido">Nro. Pedido:</label>
     <p-inputNumber id="idpedido" styleClass="w-full" class="w-full" [(ngModel)]="idpedido"
-    [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}">
+    [ngClass]="{'ng-invalid': !idpedidoValido, 'ng-dirty': !idpedidoValido}" [disabled]="true"
+    [placeholder]="modo === 'Agregar'?'(Generado automaticamente)':''">
 </p-inputNumber>
     <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el Pedido</small>
 </div>
 
 <div class="field">
-    <label for="idusuario">IdUsuario</label>
+    <label for="idusuario">Usuario</label>
 
       <p-dropdown 
                id="idusuario"
@@ -18,7 +19,8 @@
                optionLabel="nombre" 
                optionValue="idusuario"
                placeholder="Seleccionar..."
-               [showClear]="true" >
+               [showClear]="true"
+               [disabled]="!esAdmin">
             </p-dropdown>
 
     <!--input id="idusuario" type="text" class="w-full" [(ngModel)]="idusuario"pInputText
@@ -28,15 +30,15 @@
 
 <div class="field">
     <label for="fechaPedido">Fecha del Pedido</label>
-    <input id="fechaPedido" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaPedido" pInputText
-    [ngClass]="{'ng-invalid': !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}" appendTo="body">
+    <p-calendar id="fechaPedido" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaPedido"
+    [ngClass]="{'ng-invalid': !fechaPedidoValido, 'ng-dirty': !fechaPedidoValido}" appendTo="body" dateFormat="dd/mm/yy"></p-calendar>
     <small *ngIf="!fechaPedidoValido" id="codigo-help" class="p-error block">Fecha del Pedido</small>
 
 </div>
 <div class="field">
     <label for="fechaEntrega">Fecha de Entrega</label>
-    <input id="fechaEntrega" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaEntrega" pInputText
-    [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}" appendTo="body">
+    <p-calendar id="fechaEntrega" type="text" class="w-full" styleClass="w-full" [(ngModel)]="fechaEntrega"
+    [ngClass]="{'ng-invalid': !fechaEntregaValido, 'ng-dirty': !fechaEntregaValido}" appendTo="body" dateFormat="dd/mm/yy"></p-calendar>
     <small *ngIf="!fechaEntregaValido" id="codigo-help" class="p-error block">Fecha de Entrega</small>
  
 </div>

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Message } from 'primeng/api';
+import { TipoUsuario } from 'src/app/interface/tipo-usuario.interface';
 import { Usuario } from 'src/app/interface/usuario.interface';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -34,9 +36,20 @@ export class FormularioUsuarioComponent implements OnInit {
 
    guardando: boolean = false;
    mensajes: Message[] = [];
+   esAdmin: boolean = false;
 
-   modo: 'Registrar' | 'Editar' = 'Registrar';
+   modo: 'Agregar' | 'Editar' = 'Agregar';
    listaUsuario: Usuario[] = [];
+   listaTiposUsuarios: TipoUsuario[] = [
+    {
+      idtipoUsuario: 1,
+      descripcion: "administrador"
+    },
+    {
+      idtipoUsuario: 2,
+      descripcion: "cliente"
+    }
+   ]
 
    @Output()
    recargarUsuario: EventEmitter<boolean> = new EventEmitter();
@@ -57,6 +70,14 @@ export class FormularioUsuarioComponent implements OnInit {
         this.mensajes = [{severity: 'error', summary: 'Error al cargar usuarios',detail: e.error }]; 
       }
     });
+    const token: string | null = localStorage.getItem('token');
+    if(token != null){
+      const jwtHelper: JwtHelperService = new JwtHelperService();
+      this.esAdmin = jwtHelper.decodeToken(token) != null ? jwtHelper.decodeToken(token).admin : false;
+    }
+    if(!this.esAdmin){
+      this.idtipo = 2;
+    }
   }
 
   guardar(){
@@ -84,7 +105,7 @@ export class FormularioUsuarioComponent implements OnInit {
           password: this.password,
           idtipo: this.idtipo
         }
-        if(this.modo === 'Registrar'){
+        if(this.modo === 'Agregar'){
           this.registrar(usuario);
         }else{
           this.editar(usuario);
@@ -126,7 +147,7 @@ export class FormularioUsuarioComponent implements OnInit {
       });
     }
     validar(): boolean{
-      this.idusuarioValido = this.idusuario !== null;
+      this.idusuarioValido = this.modo === 'Editar' ? this.idusuario !== null : true;
       this.nombreValido = this.nombre !== null;
       this.apellidoValido = this.apellido !== null;
       this.direccionValido = this.direccion !== null;
@@ -134,7 +155,7 @@ export class FormularioUsuarioComponent implements OnInit {
       this.ciValido = this.ci !== null;
       this.digitoRucValido = this.digitoRucValido !== null;
       this.correoValido = this.correo !== null!
-      this.passwordValido = this.password !== null;
+      this.passwordValido = this.password !== null && this.password?.length > 0;
       this.idtipoValido = this.idtipo !== null;
       return this.idusuarioValido && this.nombreValido && this.apellidoValido && this.direccionValido && this.telefonoValido && this.ciValido && this.digitoRucValido && this.correoValido && this.passwordValido && this.idtipoValido;
     }
@@ -162,6 +183,10 @@ export class FormularioUsuarioComponent implements OnInit {
       this.idtipoValido = true;
 
       this.mensajes = [];
+
+      if(!this.esAdmin){
+        this.idtipo = 2;
+      }
     }
 
 

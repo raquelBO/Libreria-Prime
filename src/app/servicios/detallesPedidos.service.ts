@@ -24,7 +24,7 @@ export class DetallesPedidosService {
     return this.http.put(`${this.url}`, detallesPedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
   }
   delete(detallesPedido : DetallesPedido): Observable<any>{
-    return this.http.delete(`${this.url}-${detallesPedido.iddetallesPedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
+    return this.http.delete(`${this.url}/${detallesPedido.idpedido}-${detallesPedido.idproducto}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
   }
   private ObtenerCabeceras(contentType?: string): HttpHeaders{
     let cabeceras: HttpHeaders = new HttpHeaders();

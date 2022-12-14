@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pedido } from '../interface/pedido.interface';
 
@@ -17,6 +17,12 @@ export class PedidosService {
     get(): Observable<Pedido[]>{
         return this.http.get<Pedido[]>(this.url, { headers: this.ObtenerCabeceras()});
     }
+
+    getPorUsuario(idusuario: number): Observable<Pedido[]>{
+        const httpParams: HttpParams = new HttpParams().append('idusuario', idusuario);
+        return this.http.get<Pedido[]>(`${this.url}`, {headers: this.ObtenerCabeceras(), params: httpParams});
+    }
+
     post(pedido: Pedido): Observable<any>{
         return this.http.post(this.url, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
@@ -24,7 +30,7 @@ export class PedidosService {
         return this.http.put(`${this.url}`, pedido, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     delete(pedido: Pedido): Observable<any>{
-        return this.http.delete(`${this.url}-${pedido.idpedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
+        return this.http.delete(`${this.url}/${pedido.idpedido}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     private ObtenerCabeceras(contentType?: string): HttpHeaders{
         let cabeceras: HttpHeaders = new HttpHeaders();

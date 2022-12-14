@@ -13,29 +13,31 @@ import { ProductosService } from 'src/app/servicios/productos.service';
 })
 export class FormularioDetallesPedidoComponent implements OnInit {
 
-  iddetallesPedido: number  | null = null;
     idproducto:   number  | null = null;
-    cantidad:   number  | null = null;
+    cantidad:   number  | null = 1;
     precio : number | null = null;
-    idpedido : number | null = null ;
+    //idpedido : number | null = null ;
 
-    iddetallesPedidoValido: boolean = true;
     idproductoValido: boolean = true;
     cantidadValido: boolean = true;
     precioValido: boolean = true;
-    idpedidoValido: boolean = true;
+    //idpedidoValido: boolean = true;
 
   guardando: boolean = false;
   mensajes: Message[] = [];
 
-  modo: 'Registrar' | 'Editar' = 'Registrar';
+  modo: 'Agregar' | 'Editar' = 'Agregar';
   listaDetallesPedidos: DetallesPedido[] = [];
   listaProductos: Producto[] = [];
 
   @Output()
   recargarDetallesPedidos: EventEmitter<boolean> = new EventEmitter();
 
+  @Output()
+  agregarDetalle: EventEmitter<DetallesPedido> = new EventEmitter();
 
+  @Output()
+  modificarDetalle: EventEmitter<DetallesPedido> = new EventEmitter();
 
   constructor(
     private servicioDetallesPedidos: DetallesPedidosService,
@@ -43,9 +45,10 @@ export class FormularioDetallesPedidoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarDetallesPedidos();
+    //this.cargarDetallesPedidos();
     this.cargarProductos();
   }
+
   cargarProductos() {
     this.servicioProductos.get().subscribe({
       next: (productos) => {
@@ -72,25 +75,29 @@ export class FormularioDetallesPedidoComponent implements OnInit {
     });
   }
   guardar(){
-    this.validar();
-    if(this.iddetallesPedidoValido && this.idproductoValido && this.cantidadValido && this.precioValido && this.idpedidoValido){
+    if(this.validar()){
       const detallesPedido : DetallesPedido = {
-        iddetallesPedido: this.iddetallesPedido,
         idproducto: this.idproducto,
-        cantidad: this.cantidad,
-        precio: this.precio,
-        idpedido: this.idpedido
+        cantidad: Number(this.cantidad),
+        precio: Number(this.precio),
+        idpedido: null,
+        nombreProducto: this.listaProductos.find(producto => producto.idproducto === this.idproducto)?.nombrePro,
+        subtotal: Number(this.cantidad) *  Number(this.precio)
       }
       console.log(detallesPedido);
-      if(this.modo === 'Registrar'){
-        this.registrar(detallesPedido);
+      if(this.modo === 'Agregar'){
+        //this.registrar(detallesPedido);
+        this.agregarDetalle.emit(detallesPedido)
+        this.mensajes = [{summary: 'Producto agregado', severity: 'success'}]
       }else{
-        this.editar(detallesPedido);
+        this.modificarDetalle.emit(detallesPedido)
+        this.mensajes = [{summary: 'Producto modificado', severity: 'success'}]
+        //this.editar(detallesPedido);
       }
     }
   }
 
-  private registrar(detallesPedido: DetallesPedido){
+  /*private registrar(detallesPedido: DetallesPedido){
     this.guardando = true;
     this.servicioDetallesPedidos.post(detallesPedido).subscribe({
       next: () => {
@@ -111,7 +118,7 @@ export class FormularioDetallesPedidoComponent implements OnInit {
     this.servicioDetallesPedidos.put(detallesPedido).subscribe({
       next: () => {
         this.guardando = false;
-        this.mensajes=[{severity: 'sucess', summary: 'Exito', detail: 'Se edito el detallePedido'}];
+        this.mensajes=[{severity: 'success', summary: 'Exito', detail: 'Se edito el detallePedido'}];
         this.recargarDetallesPedidos.emit(true);
       },
       error: (e) => {
@@ -121,29 +128,33 @@ export class FormularioDetallesPedidoComponent implements OnInit {
         this.mensajes=[{severity: 'error', summary: 'Error al editar', detail: mensaje}];
       }
     });
-  }
+  }*/
   validar(): boolean{
-    this.iddetallesPedidoValido = this.iddetallesPedido !== null;
     this.idproductoValido = this.idproducto !== null;
     this.cantidadValido = this.cantidad !== null;
     this.precioValido = this.precio !== null;
-    this.idpedidoValido = this.idpedido !== null;
-    return this.iddetallesPedidoValido && this.idproductoValido && this.cantidadValido && this.precioValido && this.idpedidoValido;
+    //this.idpedidoValido = this.idpedido !== null;
+    return this.idproductoValido && this.cantidadValido && this.precioValido ;
   }
   limpiarFormulario(){
-    this.iddetallesPedidoValido = true;
      this.idproductoValido = true;
      this.cantidadValido = true;
      this.precioValido = true;
-     this.idpedidoValido = true;
+     //this.idpedidoValido = true;
 
-     this.iddetallesPedido = null;
      this.idproducto = null;
-     this.cantidad = null;
+     this.cantidad = 1;
      this.precio = null;
-     this.idpedido = null;
+     //this.idpedido = null;
 
      this.mensajes = [];
+  }
+
+  cargarPrecio(idproducto: number){
+    const productoEncontrado: Producto | undefined = this.listaProductos.find(pro => pro.idproducto === idproducto)
+    if(productoEncontrado){
+      this.precio = productoEncontrado.precioPro;
+    }
   }
 
 }

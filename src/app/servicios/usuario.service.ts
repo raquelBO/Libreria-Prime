@@ -17,6 +17,10 @@ export class UsuarioService {
   get(): Observable<Usuario[]>{
     return this.http.get<Usuario[]>(this.url, { headers: this.ObtenerCabeceras()});
   }
+
+  getPorId(idusuario: number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.url}/${idusuario}`, {headers: this.ObtenerCabeceras()});
+  }
   post(usuario: Usuario): Observable<any>{
     return this.http.post(this.url, usuario, { responseType: 'text' , headers: this.ObtenerCabeceras('application/json') });
   }

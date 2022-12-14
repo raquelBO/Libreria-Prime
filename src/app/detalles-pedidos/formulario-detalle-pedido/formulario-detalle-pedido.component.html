@@ -1,15 +1,22 @@
 <div class="field">
-     <label for="iddetallesPedido">Detalles Pedido</label>
-     <p-inputNumber id="iddetallesPedido" styleClass="w-full" class="w-full" [(ngModel)]="iddetallesPedido"
-     [ngClass]="{'ng-invalid': !iddetallesPedidoValido, 'ng-dirty': !iddetallesPedidoValido}">
-     </p-inputNumber>
-     <small *ngIf="!iddetallesPedidoValido" id="codigo-help" class="p-error block">Ingresar el detalle de pedido</small>
 
     </div>
     <div class="field">
-        <label for="!idproducto">Id Producto</label>
-        <input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto" pInputText
-        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">
+        <label for="!idproducto">Producto</label>
+        <p-dropdown
+            class="w-full"
+            styleClass="w-full"
+            [options]="listaProductos"
+            optionLabel="nombrePro"
+            optionValue="idproducto"
+            [(ngModel)]="idproducto"
+            (ngModelChange)="cargarPrecio($event)"
+            placeholder="Seleccione el producto..."
+            [showClear]="true"
+            [disabled]="modo === 'Editar'">
+        </p-dropdown>
+        <!--<input id="idproducto" type="number" class="w-full" [(ngModel)]="idproducto" pInputText
+        [ngClass]="{'ng invalid' : !idproductoValido, 'ng-dirty': !idproductoValido}">-->
         <small *ngIf="!idproductoValido" id="codigo-help" class="p-error block">Ingrese el Id producto</small>
     </div>
     <div class="field">
@@ -22,19 +29,19 @@
     <div class="field">
         <label for="!precio">Precio</label>
         <p-inputNumber id="precio" class="w-full" styleClass="w-full" [(ngModel)]="precio"
-        [ngClass]="{'ng invalid' : !precioValido, 'ng-dirty': !precioValido}" ></p-inputNumber>
+        [ngClass]="{'ng invalid' : !precioValido, 'ng-dirty': !precioValido}" [disabled]="true"></p-inputNumber>
         <small *ngIf="!precioValido" id="codigo-help" class="p-error block">Ingresar la precio</small>
     </div>
 
-    <div class="field">
+    <!--<div class="field">
         <label for="!idpedido">Pedido</label>
         <input id="idpedido" type="number" class="w-full" [(ngModel)]="idpedido" pInputText
         [ngClass]="{'ng invalid' : !idpedidoValido, 'ng-dirty': !idpedidoValido}">
         <small *ngIf="!idpedidoValido" id="codigo-help" class="p-error block">Ingresar el pedido</small>
-    </div>
+    </div>-->
 
     <div class="field">
-        <button pButton label="Guardar" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
+        <button pButton [label]="modo" icon="pi pi-save" (click)="guardar()" [loading]="guardando"></button>
         <button pButton label="Limpiar" icon="pi pi-trash" class="p-button-secondary" style="margin-left: 10px;" (click)="limpiarFormulario()"></button>
     </div>
     <p-messages [(value)]="mensajes"></p-messages>

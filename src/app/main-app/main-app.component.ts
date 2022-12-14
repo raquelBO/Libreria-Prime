@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { MenuItem, PrimeIcons } from 'primeng/api';
 import { PedidosService } from '../servicios/pedidos.service';
 
@@ -10,6 +11,12 @@ import { PedidosService } from '../servicios/pedidos.service';
 })
 export class MainAppComponent implements OnInit {
 
+  menuProducto = {
+    label: "Productos",
+    icon: "assets/produ.png",
+    routerLink: ['productos']
+  }
+
   dockItems: MenuItem[] = [
     {
       label: "Pedidos",
@@ -17,19 +24,9 @@ export class MainAppComponent implements OnInit {
       routerLink: ['pedidos']
     },
     {
-      label: "Productos",
-      icon: "assets/produ.png",
-      routerLink: ['productos']
-    },
-    {
       label: "Usuario",
       icon: "assets/usuario.jpeg",
       routerLink: ['usuario']
-    },
-    {
-      label: "Detalles Pedido",
-      icon: "assets/detalles.jpg",
-      routerLink: ['detallesPedido']
     },
     {
       label: 'Cerrar Sesion',
@@ -43,6 +40,14 @@ constructor(
 ) { }
 
 ngOnInit(): void {
+  const token: string | null = localStorage.getItem('token');
+  if(token){
+    const jwtHelper: JwtHelperService = new JwtHelperService();
+    const esAdmin: boolean = (jwtHelper.decodeToken(token)).admin;
+    if(esAdmin){
+      this.dockItems.splice(1, 0, this.menuProducto);
+    }
+  }
 }
 
   public cerrarSesion(){

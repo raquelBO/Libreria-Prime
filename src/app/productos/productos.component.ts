@@ -50,7 +50,7 @@ export class ProductosComponent implements OnInit {
   nuevo() {
     this.tituloDialogo = 'Registrar Producto';
     this.formProducto.limpiarFormulario();
-    this.formProducto.modo = 'Registrar';
+    this.formProducto.modo = 'Agregar';
     this.formProducto.cargarProductos();
     this.dialogoVisible =true;
   }

@@ -11,12 +11,15 @@
          <div class="field">
             <span class="p-input-icon-left w-full">
                 <i class="pi pi-key"></i>
-                <input pPassword type="password" pInputText placeholder="Contraseña" class="w-full" formControlName="password"> 
+                <input pPassword type="password" pInputText placeholder="Contraseña" class="w-full" formControlName="password" [feedback]="false"> 
             </span>
             <small *ngIf="form.get('password')?.invalid && form.get('password')?.dirty" class="p-error block">Ingrese la contraseña</small>
          </div>
          <div class="field">
             <button pButton label="Login" class="w-full" icon="pi pi-unlock" (click)="iniciarSesion()"></button>
+         </div>
+         <div class="field">
+            <a class="link-nuevo-usuario" routerLink="/crearusuario">Crear usuario...</a>
          </div>
          <div class="field">
             <p-messages [(value)]="mensajes"></p-messages>

@@ -1,9 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Message } from 'primeng/api';
 import { Pedido } from 'src/app/interface/pedido.interface';
 import { PedidosService } from 'src/app/servicios/pedidos.service';
 import { Usuario } from 'src/app/interface/usuario.interface';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { DetallesPedido } from 'src/app/interface/detallesPedido.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-formulario-pedido',
@@ -12,25 +14,35 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 })
 export class FormularioPedidoComponent implements OnInit {
 
+  @Input()
+  listaDetallesPedido: DetallesPedido [] = [];
+
   idpedido: number | null = null;
   idusuario: number | null = null;
-  fechaPedido: string | null = null;
-  fechaEntrega: string | null = null;
+  fechaPedido: Date | null = null;
+  fechaEntrega: Date | null = null;
 
   idpedidoValido: boolean = true;
   idusuarioValido: boolean = true;
   fechaPedidoValido: boolean = true;
   fechaEntregaValido: boolean = true;
+  listaDetallesPedidoValidado: boolean = false;
+
+  idusuarioLogueado: number | null = null;
+  esAdmin: boolean = false;
 
   guardando: boolean = false;
   mensajes: Message[] = [];
 
-  modo: 'Registrar' | 'Editar' = 'Registrar';
-  listaPedidos: Pedido[] = [];
+  modo: 'Agregar' | 'Editar' = 'Agregar';
+  //listaPedidos: Pedido[] = [];
   listaUsuarios: Usuario[] = [];
 
   @Output()
   recargarPedidos: EventEmitter<boolean> = new EventEmitter();
+
+  @Output()
+  limpiarDetalle: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private servicioPedidos: PedidosService,
@@ -38,8 +50,15 @@ export class FormularioPedidoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cargarPedidos();
+    //this.cargarPedidos();
     this.cargarUsuarios();
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if(token != null){
+      const jwtHelper: JwtHelperService = new JwtHelperService();
+      this.idusuarioLogueado = jwtHelper.decodeToken(token).sub;
+      this.esAdmin = jwtHelper.decodeToken(token).admin != null ? jwtHelper.decodeToken(token).admin : false;
+    }
   }
 
   cargarUsuarios() {
@@ -55,7 +74,7 @@ export class FormularioPedidoComponent implements OnInit {
     });
   }
 
-  cargarPedidos(){
+  /*cargarPedidos(){
     this.servicioPedidos.get().subscribe({
       next: (pedidos) => {
         this.listaPedidos = pedidos;
@@ -66,18 +85,18 @@ export class FormularioPedidoComponent implements OnInit {
         this.mensajes = [{severity: 'Error', summary: 'Error al cargar pedidos', detail: e.error}];
       }
     });
-  }
+  }*/
   guardar(){
-    this.validar();
-    if(this.idpedidoValido && this.idusuarioValido && this.fechaPedidoValido && this.fechaEntregaValido){
+    if(this.validar()){
       const pedido : Pedido = {
         idpedido: this.idpedido,
         idusuario: this.idusuario,
         fechaEntrega: this.fechaEntrega,
-        fechaPedido: this.fechaEntrega
+        fechaPedido: this.fechaPedido,
+        detallesPedidos: this.listaDetallesPedido
       }
       console.log(pedido);
-      if(this.modo === 'Registrar'){
+      if(this.modo === 'Agregar'){
         this.registrar(pedido);
       }else{
         this.editar(pedido);
@@ -121,15 +140,24 @@ export class FormularioPedidoComponent implements OnInit {
     });
   }
   validar(): boolean{
-    this.idpedidoValido = this.idpedido !== null;
+    if(this.modo === 'Editar'){
+      this.idpedidoValido = this.idpedido !== null;
+    }else{
+      this.idpedidoValido = true;
+    }
+    this.listaDetallesPedidoValidado = this.listaDetallesPedido.length > 0;
+    if(this.listaDetallesPedido.length === 0){
+      this.mensajes =[{summary: 'Agrege productos al pedido', severity: 'error'}]
+    }
+    this.listaDetallesPedidoValidado = this.listaDetallesPedido.length > 0;
     this.idusuarioValido = this.idusuario !== null;
     this.fechaEntregaValido = this.fechaEntrega !== null;
     this.fechaPedidoValido = this.fechaPedido !== null;
-    return this.idpedidoValido && this.idusuarioValido && this.fechaEntregaValido && this.fechaPedidoValido;
+    return this.idpedidoValido && this.idusuarioValido && this.fechaEntregaValido && this.fechaPedidoValido && this.listaDetallesPedidoValidado;
   }
   limpiarFormulario(){
      this.idpedido = null;
-     this.idusuario = null;
+     this.idusuario = this.idusuarioLogueado;
      this.fechaEntrega = null;
      this.fechaPedido = null; 
     
@@ -140,6 +168,8 @@ export class FormularioPedidoComponent implements OnInit {
 
 
      this.mensajes = [];
+    this.limpiarDetalle.emit(true)
+
   }
 
 }

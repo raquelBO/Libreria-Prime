@@ -29,7 +29,7 @@ export class FormularioProductoComponent implements OnInit {
   guardando: boolean = false;
   mensajes: Message[] = [];
 
-  modo: 'Registrar' | 'Editar' = 'Registrar';
+  modo: 'Agregar' | 'Editar' = 'Agregar';
   listaProductos: Producto[] = [];
 
   @Output()
@@ -66,7 +66,7 @@ export class FormularioProductoComponent implements OnInit {
         produOferta: this.produOferta,
         marcaPro: this.marcaPro
       }
-      if(this.modo === 'Registrar'){
+      if(this.modo === 'Agregar'){
         this.registrar(producto);
       }else{
         this.editar(producto);

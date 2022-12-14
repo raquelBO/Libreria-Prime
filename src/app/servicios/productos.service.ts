@@ -23,7 +23,7 @@ export class ProductosService {
         return this.http.put(`${this.url}`, producto, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     delete(producto: Producto): Observable<any>{
-        return this.http.delete(`${this.url}-${producto.idproducto}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
+        return this.http.delete(`${this.url}/${producto.idproducto}`, { responseType: 'text', headers: this.ObtenerCabeceras('application/json') });
     }
     private ObtenerCabeceras(contentType?: string): HttpHeaders{
         let cabeceras: HttpHeaders = new HttpHeaders();

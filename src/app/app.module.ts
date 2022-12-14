@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localeEsPy  from '@angular/common/locales/es-PY';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -31,6 +32,9 @@ import { PasswordModule } from 'primeng/password';
 import { SesionGuard } from './guards/sesion.guard';
 import { CalendarModule } from 'primeng/calendar';
 import {DockModule} from 'primeng/dock';
+import { registerLocaleData } from '@angular/common';
+import { CrearUsuarioComponent } from './crear-usuario/crear-usuario.component';
+registerLocaleData(localeEsPy)
 
 @NgModule({
   declarations: [
@@ -44,7 +48,8 @@ import {DockModule} from 'primeng/dock';
     UsuarioComponent,
     DetallesPedidoComponent,
     FormularioDetallesPedidoComponent,
-    FormularioUsuarioComponent
+    FormularioUsuarioComponent,
+    CrearUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +73,7 @@ import {DockModule} from 'primeng/dock';
     PasswordModule,
     DockModule
   ],
-  providers: [ConfirmationService, SesionGuard],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-PY'},ConfirmationService, SesionGuard, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

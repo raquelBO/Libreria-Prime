@@ -49,7 +49,7 @@ export class UsuarioComponent implements OnInit {
   nuevo() {
     this.tituloDialogo = 'Registrar usuario';
     this.formUsuario.limpiarFormulario();
-    this.formUsuario.modo = 'Registrar';
+    this.formUsuario.modo = 'Agregar';
     this.cargarUsuario();
     this.dialogoVisible = true;
   }
